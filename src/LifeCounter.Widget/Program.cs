@@ -12,8 +12,9 @@ var app = builder.Build();
 
 app.UseCors(e => e
     .AllowAnyMethod()
-    .AllowAnyOrigin()
+    .SetIsOriginAllowed(_ => true)
     .AllowAnyHeader()
+    .AllowCredentials()
 );
 
 app.MapControllers();

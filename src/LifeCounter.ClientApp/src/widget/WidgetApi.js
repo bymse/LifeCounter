@@ -15,12 +15,16 @@ export class WidgetApi {
   }
 
   static alive(widgetId, page, lifeId) {
-    const data = JSON.stringify({widgetId, page, lifeId});
-    return navigator.sendBeacon(`${config.apiUrl}${PREFIX}alive`, data);
+    return WidgetApi.#sendBeacon('alive', {widgetId, page, lifeId});
   }
 
   static stop(widgetId, page, lifeId) {
-    const data = JSON.stringify({widgetId, page, lifeId});
-    return navigator.sendBeacon(`${config.apiUrl}${PREFIX}stop`, data);
+    return WidgetApi.#sendBeacon('stop', {widgetId, page, lifeId});
   }
+  
+  static #sendBeacon(action, data) {
+    const body = new Blob([JSON.stringify(data)], {type: 'application/json'} );
+    return navigator.sendBeacon(`${config.apiUrl}${PREFIX}${action}`, body);
+  }
+  
 }
