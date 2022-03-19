@@ -3,15 +3,8 @@ import {config} from "./config";
 
 initialize(config.widgetId);
 
-function initialize(widgetId) {
-  const page = getPage();
-  WidgetApi.start(widgetId, page)
-    .then(({lifeId}) => {
-      if (lifeId) {
-        addAliveHandler(widgetId, page, lifeId);
-        addPageCloseHandler(widgetId, page, lifeId);
-      }
-    })
+function getPage() {
+  return `${document.location.pathname}?${document.location.search}`;
 }
 
 function addAliveHandler(widgetId, page, lifeId) {
@@ -27,4 +20,13 @@ function addPageCloseHandler(widgetId, page, lifeId) {
   });
 }
 
-const getPage = () => `${document.location.pathname}?${document.location.search}`;
+function initialize(widgetId) {
+  const page = getPage();
+  WidgetApi.start(widgetId, page)
+    .then(({lifeId}) => {
+      if (lifeId) {
+        addAliveHandler(widgetId, page, lifeId);
+        addPageCloseHandler(widgetId, page, lifeId);
+      }
+    })
+}

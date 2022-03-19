@@ -7,27 +7,27 @@ public class WidgetJsRequestHandler
     private readonly IWebHostEnvironment environment;
     private readonly IConfigurationProvider configurationProvider;
 
-    private readonly Lazy<string> widgetLazy;
-
     public WidgetJsRequestHandler(IWebHostEnvironment environment, IConfigurationProvider configurationProvider)
     {
         this.environment = environment;
         this.configurationProvider = configurationProvider;
-        widgetLazy = new Lazy<string>(LoadWidget);
     }
 
-    public string GetWidgetJs() => widgetLazy.Value;
-
-    private string LoadWidget()
+    public string GetWidgetJs(Guid widgetId)
     {
         var path = Path.Combine(environment.ContentRootPath, configurationProvider.GetJsPath(), "widget.js");
         var js = File.ReadAllText(path);
-        var configStr = JsonSerializer.Serialize(GetConfig());
-        return js.Replace("@CONFIG_INJECTION@", configStr);
+        var configStr = JsonSerializer.Serialize(GetConfig(widgetId));
+        return js.Replace("@CONFIG_INJECTION@", configStr.Replace("\"", "\\\""));
     }
 
-    private object GetConfig()
+    private object GetConfig(Guid widgetId)
     {
-        return new { alivePeriod = configurationProvider.GetAlivePeriod().TotalMilliseconds };
+        return new
+        {
+            alivePeriod = configurationProvider.GetAlivePeriod().TotalMilliseconds,
+            widgetId,
+            apiUrl = configurationProvider.GetApiUrl()
+        };
     }
 }

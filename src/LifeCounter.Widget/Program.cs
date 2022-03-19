@@ -10,6 +10,12 @@ DependenciesAutoRegisterer.Register(builder.Services, typeof(WidgetApiController
 
 var app = builder.Build();
 
+app.UseCors(e => e
+    .AllowAnyMethod()
+    .AllowAnyOrigin()
+    .AllowAnyHeader()
+);
+
 app.MapControllers();
 
 app.Run();

@@ -23,4 +23,9 @@ public class ConfigurationProvider : IConfigurationProvider
     {
         return configuration.GetValue<string>("JsPath");
     }
+
+    public string GetApiUrl()
+    {
+        return configuration.GetValue<string>("ApiUrl");
+    }
 }
