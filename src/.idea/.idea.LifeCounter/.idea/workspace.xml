@@ -10,17 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="45017447-2a89-447b-9341-6a2309afcabb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LifeCounter.Common/Container/DependenciesAutoRegisterer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LifeCounter.Common/Container/PreventAutoRegistrationAttribute.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LifeCounter.Common/Container/RedisContainerConfig.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LifeCounter.Common/Store/RedisConnectionMultiplexerProvider.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LifeCounter.Common/Container/LifeStoreContainerConfig.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.LifeCounter/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LifeCounter/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.LifeCounter/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LifeCounter/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LifeCounter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LifeCounter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LifeCounter.Common/Class1.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LifeCounter.Common/LifeCounter.Common.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LifeCounter.Common/LifeCounter.Common.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeCounter.Common/Container/DependenciesAutoRegisterer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeCounter.Common/Container/DependenciesAutoRegisterer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeCounter.Common/Container/RedisContainerConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeCounter.Common/Container/RedisContainerConfig.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LifeCounter.Widget/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeCounter.Widget/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeCounter.Widget/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/LifeCounter.Widget/Properties/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeCounter.Widget/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/LifeCounter.Widget/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeCounter.Widget/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/LifeCounter.Widget/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +35,8 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/LifeCounter.ClientApp/package-lock.json" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/de1dc94e26de2eb8cdb9b19e9451c6a0738025b875978dc863de7ba87ee78c4/ServiceCollectionServiceExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -75,40 +75,10 @@
         <option name="Build" />
       </method>
     </configuration>
-    <configuration name="LifeCounter.Monitor: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
-      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/LifeCounter.Monitor/LifeCounter.Monitor.csproj" />
-      <option name="LAUNCH_PROFILE_TFM" value="net6.0" />
-      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <option name="USE_MONO" value="0" />
-      <option name="RUNTIME_ARGUMENTS" value="" />
-      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
-      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
-      <option name="SEND_DEBUG_REQUEST" value="1" />
-      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
-      <method v="2">
-        <option name="Build" />
-      </method>
-    </configuration>
     <configuration name="LifeCounter.Site" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/LifeCounter.Site/LifeCounter.Site.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net6.0" />
       <option name="LAUNCH_PROFILE_NAME" value="LifeCounter.Site" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <option name="USE_MONO" value="0" />
-      <option name="RUNTIME_ARGUMENTS" value="" />
-      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
-      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
-      <option name="SEND_DEBUG_REQUEST" value="1" />
-      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
-      <method v="2">
-        <option name="Build" />
-      </method>
-    </configuration>
-    <configuration name="LifeCounter.Site: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
-      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/LifeCounter.Site/LifeCounter.Site.csproj" />
-      <option name="LAUNCH_PROFILE_TFM" value="net6.0" />
-      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
       <option name="RUNTIME_ARGUMENTS" value="" />
@@ -135,21 +105,11 @@
         <option name="Build" />
       </method>
     </configuration>
-    <configuration name="LifeCounter.Widget: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
-      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/LifeCounter.Widget/LifeCounter.Widget.csproj" />
-      <option name="LAUNCH_PROFILE_TFM" value="net6.0" />
-      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <option name="USE_MONO" value="0" />
-      <option name="RUNTIME_ARGUMENTS" value="" />
-      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
-      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
-      <option name="SEND_DEBUG_REQUEST" value="1" />
-      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
-      <method v="2">
-        <option name="Build" />
-      </method>
-    </configuration>
+    <list>
+      <item itemvalue=".NET Launch Settings Profile.LifeCounter.Monitor" />
+      <item itemvalue=".NET Launch Settings Profile.LifeCounter.Site" />
+      <item itemvalue=".NET Launch Settings Profile.LifeCounter.Widget" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -160,7 +120,7 @@
       <option name="presentableId" value="Default" />
       <updated>1647708736624</updated>
       <workItem from="1647708741612" duration="161000" />
-      <workItem from="1647708960879" duration="8009000" />
+      <workItem from="1647708960879" duration="8979000" />
     </task>
     <servers />
   </component>
@@ -477,5 +437,24 @@
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/LifeCounter.Common/Container/DependenciesAutoRegisterer.cs</url>
+          <line>20</line>
+          <properties documentPath="C:\Users\bymse\Desktop\Prog\csharp\LifeCounter\src\LifeCounter.Common\Container\DependenciesAutoRegisterer.cs" initialLine="20" containingFunctionPresentation="method 'Register'">
+            <startOffsets>
+              <option value="674" />
+            </startOffsets>
+            <endOffsets>
+              <option value="701" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

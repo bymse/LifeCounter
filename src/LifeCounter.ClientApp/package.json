@@ -1,0 +1,7 @@
+{
+  "name": "life-counter",
+  "version": "1.0.0",
+  "dependencies": {
+    "esbuild": "^0.14.27"
+  }
+}

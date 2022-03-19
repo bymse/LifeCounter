@@ -31,6 +31,6 @@ public static class DependenciesAutoRegisterer
 
     private static bool HasPreventAutoRegistration(Type type)
     {
-        return type.GetCustomAttribute<PreventAutoRegistrationAttribute>() == null;
+        return type.GetCustomAttribute<PreventAutoRegistrationAttribute>() != null;
     }
 }
