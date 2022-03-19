@@ -1,6 +1,9 @@
 {
   "name": "life-counter",
   "version": "1.0.0",
+  "scripts": {
+    "build" : "node build.js"
+  },
   "dependencies": {
     "esbuild": "^0.14.27"
   }
