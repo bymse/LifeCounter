@@ -11,4 +11,10 @@
       <ProjectReference Include="..\LifeCounter.Common\LifeCounter.Common.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\favicon.ico" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\site.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\package.json" />
+    </ItemGroup>
+
 </Project>
