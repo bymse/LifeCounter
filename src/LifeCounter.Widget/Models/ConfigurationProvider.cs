@@ -13,4 +13,14 @@ public class ConfigurationProvider : IConfigurationProvider
     {
         return configuration.GetValue<TimeSpan>("Life:DefaultLifeLength");
     }
+
+    public TimeSpan GetAlivePeriod()
+    {
+        return configuration.GetValue<TimeSpan>("Life:AlivePeriod");
+    }
+
+    public string GetJsPath()
+    {
+        return configuration.GetValue<string>("JsPath");
+    }
 }
