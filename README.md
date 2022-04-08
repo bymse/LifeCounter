@@ -8,3 +8,10 @@
 ## Widget
 
 1. Send info about user with beacon request
+
+## Monitor
+
+Realtime dashboard with "lives".
+Table: `id, end of life`
+
+Tech: SignalR https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr
