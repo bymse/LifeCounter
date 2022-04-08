@@ -13,7 +13,7 @@ internal static class RedisContainerConfig
         serviceCollection.TryAddSingleton(p =>
             RedisConnectionMultiplexerProvider.GetMultiplexer(p.GetService<IConfiguration>()!)
         );
-        serviceCollection.TryAddScoped<IDatabaseAsync>(provider
+        serviceCollection.TryAddTransient<IDatabaseAsync>(provider
             => provider.GetService<ConnectionMultiplexer>()!.GetDatabase()
         );
     }

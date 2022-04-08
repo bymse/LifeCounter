@@ -26,6 +26,24 @@ public class LifeStore : ILifeStore
         return database.SortedSetRemoveAsync(GetKey(widgetId, page), GetLifeIdStr(lifeId));
     }
 
+    public Task FinishExpiredLivesAwait(string widget, DateTimeOffset now)
+    {
+        return database.SortedSetRemoveRangeByScoreAsync(widget, double.NegativeInfinity, now.ToUnixTimeMilliseconds());
+    }
+
+    public async IAsyncEnumerable<string> GetAliveWidgetsAsync()
+    {
+        var endpoints = database.Multiplexer.GetEndPoints();
+        foreach (var endPoint in endpoints)
+        {
+            var server = database.Multiplexer.GetServer(endPoint);
+            await foreach (var key in server.KeysAsync(pattern: "widget:*"))
+            {
+                yield return key;
+            }
+        }
+    }
+
     private static string GetKey(Guid widgetId, string page)
     {
         return $"widget:{widgetId:N}:{page}";

@@ -8,6 +8,6 @@ public static class LifeStoreContainerConfig
     public static void RegisterLifeStore(IServiceCollection serviceCollection)
     {
         RedisContainerConfig.RegisterRedis(serviceCollection);
-        serviceCollection.AddScoped<ILifeStore, LifeStore>();
+        serviceCollection.AddTransient<ILifeStore, LifeStore>();
     }
 }
