@@ -5,12 +5,12 @@ namespace LifeCounter.Widget.Models;
 public class AliveRequestHandler
 {
     private readonly ILifeStore lifeStore;
-    private readonly IConfigurationProvider configurationProvider;
+    private readonly LifeEndProvider lifeEndProvider;
 
-    public AliveRequestHandler(ILifeStore lifeStore, IConfigurationProvider configurationProvider)
+    public AliveRequestHandler(ILifeStore lifeStore, LifeEndProvider lifeEndProvider)
     {
         this.lifeStore = lifeStore;
-        this.configurationProvider = configurationProvider;
+        this.lifeEndProvider = lifeEndProvider;
     }
 
     public Task HandleAsync(LifeRequest lifeRequest)
@@ -24,7 +24,7 @@ public class AliveRequestHandler
             lifeRequest.WidgetId,
             lifeRequest.Page,
             lifeRequest.LifeId,
-            configurationProvider.GetLifeLength()
+            lifeEndProvider.GetLifeEnd()
         );
     }
 }

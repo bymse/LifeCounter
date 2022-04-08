@@ -5,18 +5,23 @@ namespace LifeCounter.Widget.Models;
 public class StartRequestHandler
 {
     private readonly ILifeStore lifeStore;
-    private readonly IConfigurationProvider configuration;
+    private readonly LifeEndProvider lifeEndProvider;
 
-    public StartRequestHandler(ILifeStore lifeStore, IConfigurationProvider configuration)
+    public StartRequestHandler(ILifeStore lifeStore, LifeEndProvider lifeEndProvider)
     {
         this.lifeStore = lifeStore;
-        this.configuration = configuration;
+        this.lifeEndProvider = lifeEndProvider;
     }
 
     public async Task<StartResponse> HandleAsync(StartRequest startRequest)
     {
         var lifeId = Guid.NewGuid();
-        await lifeStore.KeepLifeAsync(startRequest.WidgetId, startRequest.Page, lifeId, configuration.GetLifeLength());
+        await lifeStore.KeepLifeAsync(
+            startRequest.WidgetId,
+            startRequest.Page,
+            lifeId,
+            lifeEndProvider.GetLifeEnd()
+        );
         return new StartResponse(lifeId);
     }
 }

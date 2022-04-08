@@ -11,17 +11,19 @@ public class LifeStore : ILifeStore
         this.database = database;
     }
 
-    public async Task KeepLifeAsync(Guid widgetId, string page, Guid lifeId, TimeSpan lifeLength)
+    public async Task KeepLifeAsync(Guid widgetId, string page, Guid lifeId, DateTimeOffset lifeEnd)
     {
-        await database.SetAddAsync(GetKey(widgetId, page), GetLifeIdStr(lifeId));
+        await database
+            .SortedSetAddAsync(
+                GetKey(widgetId, page),
+                GetLifeIdStr(lifeId),
+                lifeEnd.ToUnixTimeMilliseconds()
+            );
     }
 
     public Task FinishLifeAsync(Guid widgetId, string page, Guid lifeId)
     {
-        return database.SetRemoveAsync(
-            GetKey(widgetId, page),
-            GetLifeIdStr(lifeId)
-        );
+        return database.SortedSetRemoveAsync(GetKey(widgetId, page), GetLifeIdStr(lifeId));
     }
 
     private static string GetKey(Guid widgetId, string page)
