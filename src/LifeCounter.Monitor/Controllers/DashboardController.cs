@@ -1,4 +1,5 @@
 using LifeCounter.Monitor.Models;
+using LifeCounter.Monitor.Models.Dashboard;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LifeCounter.Monitor.Controllers;

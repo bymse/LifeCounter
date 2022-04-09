@@ -1,6 +1,6 @@
 using LifeCounter.Common.Store;
 
-namespace LifeCounter.Monitor.Models;
+namespace LifeCounter.Monitor.Models.Dashboard;
 
 public class DashboardViewModelBuilder
 {

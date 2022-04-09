@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace LifeCounter.Monitor.Models;
+namespace LifeCounter.Monitor.Models.Dashboard;
 
 public class DashboardAppModel
 {
