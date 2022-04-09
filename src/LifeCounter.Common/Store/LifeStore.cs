@@ -44,9 +44,25 @@ public class LifeStore : ILifeStore
         }
     }
 
+    public async Task<IReadOnlyList<LifeModel>> GetAliveAsync(Guid widgetId, string page, DateTimeOffset now)
+    {
+        var values = await database.SortedSetRangeByRankWithScoresAsync(
+            GetKey(widgetId, page),
+            now.ToUnixTimeMilliseconds()
+        );
+
+        return values
+            .Select(e => new LifeModel
+            {
+                LifeId = Guid.TryParse(e.Element, out var lifeId) ? lifeId : Guid.Empty,
+                LifeEnd = DateTimeOffset.FromUnixTimeMilliseconds((long)e.Score),
+            })
+            .ToArray();
+    }
+
     private static string GetKey(Guid widgetId, string page)
     {
-        return $"widget:{widgetId:N}:{page}";
+        return $"widget:{widgetId:N}:page:{page}";
     }
 
     private static string GetLifeIdStr(Guid lifeId)
