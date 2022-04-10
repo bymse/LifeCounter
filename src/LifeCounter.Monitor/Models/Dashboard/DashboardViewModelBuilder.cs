@@ -11,14 +11,15 @@ public class DashboardViewModelBuilder
         this.lifeStore = lifeStore;
     }
 
-    public async Task<DashboardIndexViewModel> BuildAsync(Guid widgetId, string page)
+    public async Task<DashboardIndexViewModel> BuildAsync(DashboardForm form)
     {
+        var (widgetId, page, _) = form;
         var alive = await lifeStore.GetAliveAsync(widgetId, page, DateTimeOffset.UtcNow);
         var rows = alive
             .Select(e => new DashboardRowModel(e.LifeId, e.LifeEnd.DateTime))
             .ToArray();
 
         var appModel = new DashboardAppModel(widgetId.ToString(), page);
-        return new DashboardIndexViewModel(appModel ,rows);
+        return new DashboardIndexViewModel(appModel, rows, form);
     }
 }

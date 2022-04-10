@@ -1,2 +1,12 @@
 ﻿@model DashboardIndexViewModel
 
+<script type="application/json" id="app-model">
+@Json.Serialize(Model.AppModel)
+</script>
+
+@if(Model.Form.ShowForm)
+{
+    @await Html.PartialAsync("Form", Model.Form)
+}
+
+@await Html.PartialAsync("AliveTable", Model.Rows)

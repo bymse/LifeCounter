@@ -1,0 +1,9 @@
+@model IReadOnlyList<DashboardRowModel>
+
+<div>
+    @foreach (var row in Model)
+    {
+        <div>@row.LifeId</div>
+        <div>@row.EndOfLife</div>
+    }
+</div>

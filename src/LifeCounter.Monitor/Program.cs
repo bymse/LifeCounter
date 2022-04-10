@@ -1,7 +1,13 @@
+using LifeCounter.Common.Container;
+using LifeCounter.Monitor.Controllers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+LifeStoreContainerConfig.RegisterLifeStore(builder.Services);
+DependenciesAutoRegisterer.Register(builder.Services, typeof(DashboardController).Assembly);
 
 var app = builder.Build();
 

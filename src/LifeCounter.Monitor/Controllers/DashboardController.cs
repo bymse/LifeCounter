@@ -14,9 +14,9 @@ public class DashboardController : Controller
     }
 
     [Route("/monitor/dashboard/{widgetId:guid}")]
-    public async Task<IActionResult> Index(Guid widgetId, string page)
+    public async Task<IActionResult> Index([FromRoute] [FromQuery] DashboardForm form)
     {
-        var viewModel = await dashboardViewModelBuilder.BuildAsync(widgetId, page);
+        var viewModel = await dashboardViewModelBuilder.BuildAsync(form);
         return View(viewModel);
     }
 }
