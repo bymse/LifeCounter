@@ -26,7 +26,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var frontBundleProvider = app.Services.GetService<IFrontBundleProvider>()!;
+using var scope = app.Services.CreateScope();
+var frontBundleProvider = scope.ServiceProvider.GetService<IFrontBundleProvider>()!;
 app.UseStaticFiles(new StaticFileOptions()
 {
     RequestPath = new PathString(frontBundleProvider.FrontBaseUrl),

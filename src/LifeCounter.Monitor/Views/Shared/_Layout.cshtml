@@ -1,9 +1,15 @@
-﻿<!DOCTYPE html>
+﻿@using LifeCounter.Common.Front
+<!DOCTYPE html>
 <html lang="en">
 <head>
+    @{
+        var frontBundleProvider = Context.RequestServices.GetService<IFrontBundleProvider>()!;
+    }
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>LifeCounter.Monitor</title>
+    <link rel="stylesheet" type="text/css" href="@frontBundleProvider.GetBundleUrl("dashboard", "css")"/>
+    <script async defer src="@frontBundleProvider.GetBundleUrl("dashboard", "js")"></script>
 </head>
 <body>
 <div class="container">

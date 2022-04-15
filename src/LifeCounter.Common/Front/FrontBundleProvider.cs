@@ -31,7 +31,7 @@ internal class FrontBundleProvider : IFrontBundleProvider
     private FileInfo GetBundle(string bundle, string extension)
     {
         return GetBundlesDir()
-            .EnumerateFiles($"{bundle}.*.${extension}")
+            .EnumerateFiles($"{bundle}.*.{extension}")
             .First();
     }
 
