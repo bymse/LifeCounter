@@ -6,7 +6,7 @@ namespace LifeCounter.Common.Container;
 
 public static class DependenciesAutoRegisterer
 {
-    public static void Register(IServiceCollection serviceCollection, Assembly assembly)
+    public static IServiceCollection UseAutoDependencies(this IServiceCollection serviceCollection, Assembly assembly)
     {
         var types = assembly
             .GetTypes()
@@ -27,6 +27,8 @@ public static class DependenciesAutoRegisterer
                 serviceCollection.TryAddScoped(@interface, type);
             }
         }
+
+        return serviceCollection;
     }
 
     private static bool HasPreventAutoRegistration(Type type)

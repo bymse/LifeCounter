@@ -6,7 +6,7 @@ namespace LifeCounter.Common.Container;
 
 public static class UtilitiesRegisterer
 {
-    public static IServiceCollection UseUtilitiesDependencies(this IServiceCollection serviceCollection, string section)
+    public static IServiceCollection UseUtilities(this IServiceCollection serviceCollection, string section)
     {
         serviceCollection.AddSingleton<ICurrentAppSectionProvider>(_ => new CurrentAppSectionProvider(section));
         serviceCollection.AddScoped<IFrontBundleProvider, FrontBundleProvider>();

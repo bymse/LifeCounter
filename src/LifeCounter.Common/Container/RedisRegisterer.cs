@@ -6,9 +6,9 @@ using StackExchange.Redis;
 
 namespace LifeCounter.Common.Container;
 
-internal static class RedisContainerConfig
+internal static class RedisRegisterer
 {
-    public static void RegisterRedis(IServiceCollection serviceCollection)
+    public static IServiceCollection UseRedis(this IServiceCollection serviceCollection)
     {
         serviceCollection.TryAddSingleton(p =>
             RedisConnectionMultiplexerProvider.GetMultiplexer(p.GetService<IConfiguration>()!)
@@ -16,5 +16,7 @@ internal static class RedisContainerConfig
         serviceCollection.TryAddTransient<IDatabaseAsync>(provider
             => provider.GetService<ConnectionMultiplexer>()!.GetDatabase()
         );
+
+        return serviceCollection;
     }
 }
