@@ -5,8 +5,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-LifeStoreContainerConfig.RegisterLifeStore(builder.Services);
-DependenciesAutoRegisterer.Register(builder.Services, typeof(WidgetApiController).Assembly);
+builder.Services
+    .UseLifeStore()
+    .UseAutoDependencies(typeof(WidgetApiController).Assembly)
+    .UseUtilities("widget")
+    ;
 
 var app = builder.Build();
 

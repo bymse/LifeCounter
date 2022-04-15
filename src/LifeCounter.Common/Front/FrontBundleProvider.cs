@@ -18,14 +18,24 @@ internal class FrontBundleProvider : IFrontBundleProvider
     }
 
     public string FrontBaseUrl => $"/{currentAppSectionProvider.Section}/static";
-    
-    public string GetAbsolutePath(string bundle, string extension) 
+
+    public string GetAbsolutePath(string bundle, string extension)
         => GetBundle(bundle, extension).FullName;
+
+    public string GetBasePath() 
+        => GetBundlesDir().FullName;
 
     public string GetBundleUrl(string bundle, string extension)
         => $"{FrontBaseUrl}/{GetBundle(bundle, extension).Name}";
 
     private FileInfo GetBundle(string bundle, string extension)
+    {
+        return GetBundlesDir()
+            .EnumerateFiles($"{bundle}.*.${extension}")
+            .First();
+    }
+
+    private DirectoryInfo GetBundlesDir()
     {
         var root = hostEnvironment.ContentRootPath;
         var clientAppPath = Path.Combine(
@@ -33,8 +43,6 @@ internal class FrontBundleProvider : IFrontBundleProvider
             "LifeCounter.ClientApp", "build", currentAppSectionProvider.Section
         );
 
-        return new DirectoryInfo(clientAppPath)
-            .EnumerateFiles($"{bundle}.*.${extension}")
-            .First();
+        return new DirectoryInfo(clientAppPath);
     }
 }

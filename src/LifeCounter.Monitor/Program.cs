@@ -1,13 +1,18 @@
 using LifeCounter.Common.Container;
+using LifeCounter.Common.Front;
 using LifeCounter.Monitor.Controllers;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-LifeStoreContainerConfig.RegisterLifeStore(builder.Services);
-DependenciesAutoRegisterer.Register(builder.Services, typeof(DashboardController).Assembly);
+builder.Services
+    .UseLifeStore()
+    .UseAutoDependencies(typeof(DashboardController).Assembly)
+    .UseUtilities("monitor")
+    ;
 
 var app = builder.Build();
 
@@ -20,7 +25,13 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+
+var frontBundleProvider = app.Services.GetService<IFrontBundleProvider>()!;
+app.UseStaticFiles(new StaticFileOptions()
+{
+    RequestPath = new PathString(frontBundleProvider.FrontBaseUrl),
+    FileProvider = new PhysicalFileProvider(frontBundleProvider.GetBasePath())
+});
 
 app.UseRouting();
 
