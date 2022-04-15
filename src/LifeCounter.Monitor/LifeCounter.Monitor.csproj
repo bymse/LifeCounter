@@ -11,4 +11,8 @@
       <ProjectReference Include="..\LifeCounter.Common\LifeCounter.Common.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.4" />
+    </ItemGroup>
+
 </Project>

@@ -1,25 +1,11 @@
 ﻿{
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:38345",
-      "sslPort": 44357
-    }
-  },
   "profiles": {
     "LifeCounter.Monitor": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "applicationUrl": "https://localhost:7173;http://localhost:5173",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
+      "launchUrl": "monitor/dashboard/c40a97c925594b71967cce8fc2ce5d0b",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

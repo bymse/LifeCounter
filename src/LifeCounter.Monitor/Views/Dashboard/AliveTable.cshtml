@@ -1,9 +1,9 @@
 @model IReadOnlyList<DashboardRowModel>
 
-<div>
+<section class="alive-table">
     @foreach (var row in Model)
     {
-        <div>@row.LifeId</div>
-        <div>@row.EndOfLife</div>
+        <div class="live-id">@row.LifeId</div>
+        <div class="end-of-life">@row.EndOfLife</div>
     }
-</div>
+</section>
