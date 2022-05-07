@@ -1,8 +1,6 @@
 .alive-table {
     display: flex;
     flex-direction: column;
-    font-family: monospace;
-    font-size: 1.3em;
     border-radius: 1em;
 }
 
@@ -19,12 +17,15 @@
     background: var(--light-color);
 }
 
-.alive-table .row.head {
-    background: var(--second-color);
-    color: var(--light-color);
+.alive-table .row:first-child {
     border-radius: 0.4em 0.4em 0 0;
 }
 
-.alive-table .row.head:last-child {
+.alive-table .row:last-child {
     border-radius: 0 0 0.4em 0.4em;
+}
+
+.alive-table .row.head {
+    background: var(--second-color);
+    color: var(--light-color);
 }
