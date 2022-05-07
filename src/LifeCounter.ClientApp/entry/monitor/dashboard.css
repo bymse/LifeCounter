@@ -1,1 +1,21 @@
-@import url('../../src/dashboard/index.css');
+@import url('../../src/dashboard/table.css');
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --light-color: #F7F7F7;
+    --dark-color: #393E46;
+    --first-color: #EEEEEE;
+    --second-color: #929AAB;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}

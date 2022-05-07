@@ -1,0 +1,30 @@
+.alive-table {
+    display: flex;
+    flex-direction: column;
+    font-family: monospace;
+    font-size: 1.3em;
+    border-radius: 1em;
+}
+
+.alive-table .row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    column-gap: 1em;
+    padding: 0.3em 0.5em;
+    color: var(--dark-color);
+    background: var(--first-color);
+}
+
+.alive-table .row:nth-child(2n) {
+    background: var(--light-color);
+}
+
+.alive-table .row.head {
+    background: var(--second-color);
+    color: var(--light-color);
+    border-radius: 0.4em 0.4em 0 0;
+}
+
+.alive-table .row.head:last-child {
+    border-radius: 0 0 0.4em 0.4em;
+}

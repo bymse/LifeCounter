@@ -1,9 +1,25 @@
 @model IReadOnlyList<DashboardRowModel>
 
 <section class="alive-table">
+    @{ Head(); }
     @foreach (var row in Model)
     {
-        <div class="live-id">@row.LifeId</div>
-        <div class="end-of-life">@row.EndOfLife</div>
+        <div class="row">
+            <div class="live-id">@row.LifeId</div>
+            <div class="end-of-life">@row.EndOfLife</div>
+        </div>
     }
+    @{ Head(); }
 </section>
+
+@functions{
+
+    void Head()
+    {
+        <div class="row head">
+            <div>Life ID</div>
+            <div>End of life</div>
+        </div>
+    }
+
+}
