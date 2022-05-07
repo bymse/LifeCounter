@@ -14,9 +14,20 @@ public class DashboardController : Controller
     }
 
     [Route("/monitor/dashboard/{widgetId:guid}")]
-    public async Task<IActionResult> Index([FromRoute] [FromQuery] DashboardForm form)
+    public async Task<IActionResult> Index(Guid widgetId, [FromQuery] DashboardForm form)
     {
+        form.WidgetId = widgetId;
         var viewModel = await dashboardViewModelBuilder.BuildAsync(form);
+        // var viewModel = new DashboardIndexViewModel(
+        //     new DashboardAppModel(Guid.NewGuid().ToString(), form.Page),
+        //     new[]
+        //     {
+        //         new DashboardRowModel(Guid.NewGuid(), DateTime.Now),
+        //         new DashboardRowModel(Guid.NewGuid(), DateTime.Now),
+        //         new DashboardRowModel(Guid.NewGuid(), DateTime.Now),
+        //     },
+        //     form
+        // );
         return View(viewModel);
     }
 }

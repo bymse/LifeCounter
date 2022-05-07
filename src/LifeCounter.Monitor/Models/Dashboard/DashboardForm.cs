@@ -7,9 +7,8 @@ public class DashboardForm
 {
     [Required]
     public Guid WidgetId { get; set; }
-    
-    [Required]
-    public string Page { get; set; }
+
+    [Required] public string Page { get; set; } = "/";
 
     [HiddenInput] public bool ShowForm { get; set; } = true;
 

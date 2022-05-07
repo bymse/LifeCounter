@@ -9,6 +9,7 @@ public static class LifeStoreContainerRegisterer
     {
         return serviceCollection
                 .UseRedis()
+                .AddTransient<KeepLifeScriptManager>()
                 .AddTransient<ILifeStore, LifeStore>()
             ;
     }

@@ -2,23 +2,24 @@ using StackExchange.Redis;
 
 namespace LifeCounter.Common.Store;
 
-public class LifeStore : ILifeStore
+internal class LifeStore : ILifeStore
 {
+    private readonly KeepLifeScriptManager keepLifeScriptManager;
     private readonly IDatabaseAsync database;
 
-    public LifeStore(IDatabaseAsync database)
+    public LifeStore(IDatabaseAsync database, KeepLifeScriptManager keepLifeScriptManager)
     {
         this.database = database;
+        this.keepLifeScriptManager = keepLifeScriptManager;
     }
 
     public async Task KeepLifeAsync(Guid widgetId, string page, Guid lifeId, DateTimeOffset lifeEnd)
     {
-        await database
-            .SortedSetAddAsync(
-                GetKey(widgetId, page),
-                GetLifeIdStr(lifeId),
-                lifeEnd.ToUnixTimeMilliseconds()
-            );
+        await keepLifeScriptManager.CallAsync(
+            GetKey(widgetId, page),
+            GetLifeIdStr(lifeId),
+            lifeEnd.ToUnixTimeSeconds()
+        );
     }
 
     public Task FinishLifeAsync(Guid widgetId, string page, Guid lifeId)
@@ -26,36 +27,15 @@ public class LifeStore : ILifeStore
         return database.SortedSetRemoveAsync(GetKey(widgetId, page), GetLifeIdStr(lifeId));
     }
 
-    public Task FinishExpiredLivesAwait(string widget, DateTimeOffset now)
-    {
-        return database.SortedSetRemoveRangeByScoreAsync(widget, double.NegativeInfinity, now.ToUnixTimeMilliseconds());
-    }
-
-    public async IAsyncEnumerable<string> GetAliveWidgetsAsync()
-    {
-        var endpoints = database.Multiplexer.GetEndPoints();
-        foreach (var endPoint in endpoints)
-        {
-            var server = database.Multiplexer.GetServer(endPoint);
-            await foreach (var key in server.KeysAsync(pattern: "widget:*"))
-            {
-                yield return key;
-            }
-        }
-    }
-
     public async Task<IReadOnlyList<LifeModel>> GetAliveAsync(Guid widgetId, string page, DateTimeOffset now)
     {
-        var values = await database.SortedSetRangeByRankWithScoresAsync(
-            GetKey(widgetId, page),
-            now.ToUnixTimeMilliseconds()
-        );
+        var values = await database.SortedSetRangeByRankWithScoresAsync(GetKey(widgetId, page));
 
         return values
             .Select(e => new LifeModel
             {
                 LifeId = Guid.TryParse(e.Element, out var lifeId) ? lifeId : Guid.Empty,
-                LifeEnd = DateTimeOffset.FromUnixTimeMilliseconds((long)e.Score),
+                LifeEnd = DateTimeOffset.FromUnixTimeSeconds((long)e.Score),
             })
             .ToArray();
     }
