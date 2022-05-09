@@ -9,7 +9,6 @@ local current_time = tonumber(redis.call('TIME')[1])
 redis.call('ZREMRANGEBYSCORE', @key, 0, current_time)
 redis.call('ZADD', @key, @score, @value)
 redis.call('EXPIREAT', @key, @score)
-redis.call('PUBLISH', 'channel:' .. @key, '')
 ");
 
     private readonly IDatabaseAsync database;

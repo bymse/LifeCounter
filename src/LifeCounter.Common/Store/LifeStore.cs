@@ -44,7 +44,7 @@ internal class LifeStore : ILifeStore
     {
         return database.Multiplexer
             .GetSubscriber()
-            .Subscribe($"channel:{GetKey(widgetId, page)}");
+            .Subscribe($"__keyspace@*__:{GetKey(widgetId, page)}");
     }
 
     private static string GetKey(Guid widgetId, string page)
