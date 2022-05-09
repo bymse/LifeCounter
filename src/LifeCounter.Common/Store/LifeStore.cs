@@ -40,6 +40,13 @@ internal class LifeStore : ILifeStore
             .ToArray();
     }
 
+    public ChannelMessageQueue Subscribe(Guid widgetId, string page)
+    {
+        return database.Multiplexer
+            .GetSubscriber()
+            .Subscribe($"channel:{GetKey(widgetId, page)}");
+    }
+
     private static string GetKey(Guid widgetId, string page)
     {
         return $"widget:{widgetId:N}:page:{page}";

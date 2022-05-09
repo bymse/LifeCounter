@@ -13,7 +13,6 @@ public static class DependenciesAutoRegisterer
             .Where(e => !e.IsAbstract)
             .Where(e => !e.IsNested)
             .Where(e => !e.IsEnum)
-            .Where(e => e.IsPublic)
             .Where(e => e.IsClass)
             .Where(e => !HasPreventAutoRegistration(e))
             .Where(e => e.GetProperties().Length == 0);

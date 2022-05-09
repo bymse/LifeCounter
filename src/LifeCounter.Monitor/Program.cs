@@ -1,12 +1,18 @@
 using LifeCounter.Common.Container;
 using LifeCounter.Common.Front;
+using LifeCounter.Monitor.Background;
 using LifeCounter.Monitor.Controllers;
+using LifeCounter.Monitor.Hubs;
+using LifeCounter.Monitor.Models.LifeUpdates.Subscription;
 using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSignalR();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddHostedService<LivesUpdatesProcessingWorker>();
 
 builder.Services
     .UseLifeStore()
@@ -51,5 +57,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapHub<LivesHub>("/monitor/lives");
 
 app.Run();

@@ -1,6 +1,6 @@
 namespace LifeCounter.Monitor.Models.LifeUpdates.Subscription;
 
-public interface ILifeUpdatesSubscriptionsProvider
+public interface ILifeUpdatesSessionsProvider
 {
-    IAsyncEnumerable<LifeUpdatesSubscription> GetSubscriptionsAsync(CancellationToken cancellationToken);
+    IAsyncEnumerable<LifeUpdatesSession> GetAsync(CancellationToken cancellationToken);
 }
