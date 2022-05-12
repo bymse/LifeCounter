@@ -15,10 +15,10 @@ public class LivesUpdatesProcessingWorker : BackgroundService
     {
         using var scope = serviceProvider.CreateScope();
         var sessionsProvider = scope.ServiceProvider.GetService<ILifeUpdatesSessionsProvider>()!;
-        var sessionsHandler = scope.ServiceProvider.GetService<LifeUpdatesSessionHandler>()!;
+        var sessionsHandler = scope.ServiceProvider.GetService<LifeUpdatesSubscriptionsManager>()!;
         await foreach (var session in sessionsProvider.GetAsync(stoppingToken))
         {
-            await sessionsHandler.HandleAsync(session);
+            await sessionsHandler.SubscribeAsync(session);
         }
     }
 }

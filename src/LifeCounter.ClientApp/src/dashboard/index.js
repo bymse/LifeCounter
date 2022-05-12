@@ -5,7 +5,7 @@ if (!appModel) {
 }
 
 const connection = new signalR.HubConnectionBuilder()
-  .withUrl('/monitor/lives')
+  .withUrl('/monitor/life-updates')
   .build();
 
 connection.start()

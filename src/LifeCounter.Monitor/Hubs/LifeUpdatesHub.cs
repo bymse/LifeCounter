@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace LifeCounter.Monitor.Hubs;
 
-public class LivesHub : Hub
+public class LifeUpdatesHub : Hub
 {
     private readonly ILifeUpdatesSubscriber lifeUpdatesSubscriber;
 
-    public LivesHub(ILifeUpdatesSubscriber lifeUpdatesSubscriber)
+    public LifeUpdatesHub(ILifeUpdatesSubscriber lifeUpdatesSubscriber)
     {
         this.lifeUpdatesSubscriber = lifeUpdatesSubscriber;
     }
