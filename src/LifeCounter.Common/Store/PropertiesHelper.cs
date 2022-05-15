@@ -6,7 +6,9 @@ internal static class PropertiesHelper
 {
     public static string ToStoredString(IReadOnlyDictionary<string, string> properties)
     {
-        var pairs = properties.Select(e => $"{WebUtility.UrlEncode(e.Key)}={WebUtility.UrlEncode(e.Value)}");
+        var pairs = properties
+            .Where(e => !string.IsNullOrEmpty(e.Key))
+            .Select(e => $"{WebUtility.UrlEncode(e.Key)}={WebUtility.UrlEncode(e.Value)}");
         return string.Join("&", pairs);
     }
 
@@ -19,6 +21,7 @@ internal static class PropertiesHelper
                 key = WebUtility.UrlDecode(e.First()),
                 value = WebUtility.UrlDecode(e.Last())
             })
+            .Where(e => !string.IsNullOrEmpty(e.key))
             .ToDictionary(e => e.key, e => e.value);
     }
 }

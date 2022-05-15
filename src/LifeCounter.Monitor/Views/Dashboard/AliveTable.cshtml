@@ -6,6 +6,9 @@
     {
         <div class="row">
             <div class="live-id">@row.LifeId.ToString("N")</div>
+            <div class="properties">
+                @string.Join(";", row.Properties.Select(e => $"{e.Key}={e.Value}"))
+            </div>
             <div class="end-of-life">@row.EndOfLife</div>
         </div>
     }
@@ -18,6 +21,7 @@
     {
         <div class="row head">
             <div>Life ID</div>
+            <div>Properties</div>
             <div>End of life</div>
         </div>
     }

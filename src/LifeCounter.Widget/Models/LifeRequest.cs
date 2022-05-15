@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using System.Text.Json.Serialization;
 using LifeCounter.Widget.Validation;
 
@@ -14,4 +15,7 @@ public class LifeRequest
     [LifeId]
     [JsonPropertyName("lifeId")]
     public Guid LifeId { get; init; }
+    
+    [JsonPropertyName("properties")]
+    public IReadOnlyDictionary<string, string>? Properties { get; init; } = ImmutableDictionary<string, string>.Empty;
 }

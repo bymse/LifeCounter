@@ -15,7 +15,7 @@ public class DashboardRowsViewModelBuilder
     {
         var alive = await lifeStore.GetAliveAsync(widgetId, page);
         return alive
-            .Select(e => new DashboardRowViewModel(e.LifeId, e.LifeEnd.DateTime))
+            .Select(e => new DashboardRowViewModel(e.LifeId, e.LifeEnd.DateTime, e.Properties))
             .ToArray();
     }
 }

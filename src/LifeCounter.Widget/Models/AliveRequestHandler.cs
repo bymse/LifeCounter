@@ -24,7 +24,7 @@ public class AliveRequestHandler
             lifeRequest.WidgetId,
             lifeRequest.Page,
             lifeRequest.LifeId,
-            new Dictionary<string, string>(),
+            lifeRequest.Properties,
             lifeEndProvider.GetLifeEnd()
         );
     }
