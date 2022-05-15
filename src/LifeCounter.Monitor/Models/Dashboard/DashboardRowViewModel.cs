@@ -1,8 +1,8 @@
 namespace LifeCounter.Monitor.Models.Dashboard;
 
-public class DashboardRowModel
+public class DashboardRowViewModel
 {
-    public DashboardRowModel(Guid lifeId, DateTime endOfLife)
+    public DashboardRowViewModel(Guid lifeId, DateTime endOfLife)
     {
         LifeId = lifeId;
         EndOfLife = endOfLife;

@@ -4,7 +4,7 @@ public class DashboardIndexViewModel : DashboardViewModel
 {
     public DashboardIndexViewModel(
         DashboardAppModel appModel,
-        IReadOnlyList<DashboardRowModel> rows,
+        IReadOnlyList<DashboardRowViewModel> rows,
         DashboardForm form
     ) : base(rows)
     {

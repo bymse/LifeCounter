@@ -2,10 +2,10 @@ namespace LifeCounter.Monitor.Models.Dashboard;
 
 public class DashboardViewModel
 {
-    public DashboardViewModel(IReadOnlyList<DashboardRowModel> rows)
+    public DashboardViewModel(IReadOnlyList<DashboardRowViewModel> rows)
     {
         Rows = rows;
     }
 
-    public IReadOnlyList<DashboardRowModel> Rows { get; }
+    public IReadOnlyList<DashboardRowViewModel> Rows { get; }
 }
