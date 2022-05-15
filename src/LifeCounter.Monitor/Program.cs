@@ -14,12 +14,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSignalR();
-builder.Services.RemoveAll(typeof(HubLifetimeManager<>));
-builder.Services.RemoveAll(typeof(DefaultHubLifetimeManager<>));
-builder.Services.AddSingleton(
-    typeof(HubLifetimeManager<>),
-    typeof(LifeUpdatesHubLifetimeManager<>)
-);
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddHostedService<LivesUpdatesProcessingWorker>();
@@ -28,6 +22,8 @@ builder.Services
     .UseLifeStore()
     .UseAutoDependencies(typeof(DashboardController).Assembly)
     .UseUtilities("monitor")
+    .AddSingleton<ILifeUpdatesSubscriber, LifeUpdatesSubscribeRequestsChannel>()
+    .AddSingleton<ILifeUpdatesSubscribeRequestsProvider, LifeUpdatesSubscribeRequestsChannel>()
     ;
 
 if (builder.Environment.IsDevelopment())

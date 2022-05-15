@@ -12,16 +12,15 @@ namespace LifeCounter.Monitor.Models
         private readonly IRazorViewEngine razorViewEngine;
         private readonly ITempDataProvider tempDataProvider;
         private readonly IServiceProvider serviceProvider;
-        private readonly IHttpContextAccessor contextAccessor;
 
         public ViewRenderService(IRazorViewEngine razorViewEngine,
             ITempDataProvider tempDataProvider,
-            IServiceProvider serviceProvider, IHttpContextAccessor contextAccessor)
+            IServiceProvider serviceProvider
+        )
         {
             this.razorViewEngine = razorViewEngine;
             this.tempDataProvider = tempDataProvider;
             this.serviceProvider = serviceProvider;
-            this.contextAccessor = contextAccessor;
         }
 
         public async Task<string> RenderToStringAsync(string viewName, object model)

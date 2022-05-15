@@ -1,7 +1,10 @@
+using LifeCounter.Common.Container;
+using LifeCounter.Monitor.Models.LifeUpdates;
 using LifeCounter.Monitor.Models.LifeUpdates.Subscription;
 
 namespace LifeCounter.Monitor.Background;
 
+[PreventAutoRegistration]
 public class LivesUpdatesProcessingWorker : BackgroundService
 {
     private readonly IServiceProvider serviceProvider;
@@ -14,11 +17,12 @@ public class LivesUpdatesProcessingWorker : BackgroundService
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         using var scope = serviceProvider.CreateScope();
-        var sessionsProvider = scope.ServiceProvider.GetService<ILifeUpdatesSessionsProvider>()!;
-        var sessionsHandler = scope.ServiceProvider.GetService<LifeUpdatesSubscriptionsManager>()!;
-        await foreach (var session in sessionsProvider.GetAsync(stoppingToken))
+        var requestsProvider = scope.ServiceProvider.GetService<ILifeUpdatesSubscribeRequestsProvider>()!;
+        var requestHandler = scope.ServiceProvider.GetService<LifeUpdatesSubscribeRequestHandler>()!;
+        
+        await foreach (var request in requestsProvider.GetAsync(stoppingToken))
         {
-            await sessionsHandler.SubscribeAsync(session);
+            requestHandler.Handle(request);
         }
     }
 }
