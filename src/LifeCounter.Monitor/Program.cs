@@ -14,8 +14,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton(
-    typeof(LifeUpdatesHubLifeTimeManager<>),
-    typeof(HubLifetimeManager<>)
+    typeof(HubLifetimeManager<>),
+    typeof(LifeUpdatesHubLifeTimeManager<>)
 );
 builder.Services.AddSignalR();
 
@@ -28,6 +28,7 @@ builder.Services
     .UseUtilities("monitor")
     .AddSingleton<ILifeUpdatesSubscriber, LifeUpdatesSubscribeRequestsChannel>()
     .AddSingleton<ILifeUpdatesSubscribeRequestsProvider, LifeUpdatesSubscribeRequestsChannel>()
+    .AddSingleton<ILifeUpdatesSubscriptionsManager, LifeUpdatesSubscriptionsManager>()
     ;
 
 if (builder.Environment.IsDevelopment())

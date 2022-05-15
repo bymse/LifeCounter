@@ -9,7 +9,7 @@ public class LifeUpdatesHubLifeTimeManager<T> : DefaultHubLifetimeManager<T> whe
     private readonly ILifeUpdatesSubscriptionsManager subscriptionsManager;
 
     public LifeUpdatesHubLifeTimeManager(
-        ILogger<DefaultHubLifetimeManager<T>> logger,
+        ILogger<LifeUpdatesHubLifeTimeManager<T>> logger,
         ILifeUpdatesSubscriptionsManager subscriptionsManager
     ) : base(logger)
     {

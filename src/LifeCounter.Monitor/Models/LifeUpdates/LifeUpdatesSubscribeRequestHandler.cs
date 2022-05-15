@@ -3,7 +3,6 @@ using LifeCounter.Monitor.Models.LifeUpdates.Subscription;
 
 namespace LifeCounter.Monitor.Models.LifeUpdates;
 
-[PreventAutoRegistration]
 public class LifeUpdatesSubscribeRequestHandler
 {
     private readonly ILifeUpdatesSubscriptionsManager subscriptionsManager;

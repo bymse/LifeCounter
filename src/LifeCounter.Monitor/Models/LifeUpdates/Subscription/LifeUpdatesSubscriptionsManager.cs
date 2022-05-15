@@ -1,10 +1,12 @@
 using System.Collections.Concurrent;
+using LifeCounter.Common.Container;
 using LifeCounter.Common.Store;
 using LifeCounter.Common.Utilities.Lock;
 using StackExchange.Redis;
 
 namespace LifeCounter.Monitor.Models.LifeUpdates.Subscription;
 
+[PreventAutoRegistration]
 public class LifeUpdatesSubscriptionsManager : ILifeUpdatesSubscriptionsManager
 {
     private static readonly NamedLock GroupLock = new();
@@ -57,7 +59,7 @@ public class LifeUpdatesSubscriptionsManager : ILifeUpdatesSubscriptionsManager
         return async _ =>
         {
             string[] connections;
-            using (GroupLock.LockAsync(key))
+            using (await GroupLock.LockAsync(key))
             {
                 if (Groups.TryGetValue(key, out var subscription))
                     connections = subscription.Connections.ToArray();
@@ -85,11 +87,12 @@ public class LifeUpdatesSubscriptionsManager : ILifeUpdatesSubscriptionsManager
         using (GroupLock.Lock(key))
         {
             if (!Groups.TryGetValue(key, out var subscription)) return;
-            if (subscription.Connections.Count != 0) return;
+            
+            Groups.TryRemove(key, out _);
 
             subscription.Connections.Remove(connectionId);
-            subscription.Queue.Unsubscribe();
-            Groups.TryRemove(key, out _);
+            if (subscription.Connections.Count == 0) 
+                subscription.Queue.Unsubscribe();
         }
     }
 }

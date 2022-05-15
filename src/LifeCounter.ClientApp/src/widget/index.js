@@ -6,7 +6,7 @@ initialize(config.widgetId);
 
 function getPage() {
   const search = document.location.search;
-  return document.location.pathname + (!!search ? `?${search}` : '');
+  return document.location.pathname + (!!search ? `${search}` : '');
 }
 
 function initialize(widgetId) {
