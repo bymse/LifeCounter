@@ -1,13 +1,15 @@
+using StackExchange.Redis;
+
 namespace LifeCounter.Monitor.Models.LifeUpdates.Subscription;
 
 public class LifeUpdatesSubscription
 {
-    public LifeUpdatesSubscription(Guid widgetId, string page)
+    public LifeUpdatesSubscription(ChannelMessageQueue queue)
     {
-        WidgetId = widgetId;
-        Page = page;
+        Queue = queue;
+        Connections = new List<string>();
     }
 
-    public Guid WidgetId { get; }
-    public string Page { get; }
+    public ChannelMessageQueue Queue { get; }
+    public IList<string> Connections { get; }
 }

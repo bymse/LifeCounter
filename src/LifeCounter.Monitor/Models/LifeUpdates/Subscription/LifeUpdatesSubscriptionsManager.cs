@@ -1,70 +1,95 @@
 using System.Collections.Concurrent;
 using LifeCounter.Common.Store;
+using LifeCounter.Common.Utilities.Lock;
 using StackExchange.Redis;
 
 namespace LifeCounter.Monitor.Models.LifeUpdates.Subscription;
 
-public class LifeUpdatesSubscriptionsManager
+public class LifeUpdatesSubscriptionsManager : ILifeUpdatesSubscriptionsManager
 {
-    private static readonly ConcurrentDictionary<string, object> Locks = new();
+    private static readonly NamedLock GroupLock = new();
 
-    private static readonly Dictionary<string, ChannelMessageQueue> GroupsToQueues = new();
+    private static readonly ConcurrentDictionary<string, LifeUpdatesSubscription> Groups = new();
+    private static readonly ConcurrentDictionary<string, ISet<LifeUpdatesIdentifier>> Connections = new();
 
     private readonly ILifeStore lifeStore;
-    private readonly LifeUpdatesHandler lifeUpdatesHandler;
-    private readonly ILifeUpdatesGroupsManager groupsManager;
 
-    public LifeUpdatesSubscriptionsManager(
-        ILifeStore lifeStore,
-        LifeUpdatesHandler lifeUpdatesHandler,
-        ILifeUpdatesGroupsManager groupsManager
-    )
+    public LifeUpdatesSubscriptionsManager(ILifeStore lifeStore)
     {
         this.lifeStore = lifeStore;
-        this.lifeUpdatesHandler = lifeUpdatesHandler;
-        this.groupsManager = groupsManager;
     }
 
-    public Task SubscribeAsync(LifeUpdatesSession session)
+    public void Subscribe(LifeUpdatesSubscribeRequest request, OnMessage onMessage)
     {
-        var key = session.GetKey();
-        lock (Locks.GetOrAdd(key, () => new object()))
+        var (connectionId, identifier) = request;
+        var key = identifier.GetKey();
+        using (GroupLock.Lock(key))
         {
-            if (!groupsManager.GroupsExists(key))
+            if (Groups.TryGetValue(key, out var subscription))
             {
-                var queue = lifeStore.Subscribe(session.WidgetId, session.Page);
-                var model = new LifeUpdatesSubscription(session.WidgetId, session.Page);
-                queue.OnMessage(e => HandleMessage(model, key));
-                GroupsToQueues.Add(key, queue);
+                subscription.Connections.Add(connectionId);
             }
-
-            groupsManager.AddToGroupAsync(key, session.ClientId);
+            else
+            {
+                var queue = lifeStore.Subscribe(identifier.WidgetId, identifier.Page);
+                queue.OnMessage(GetOnMessage(onMessage, identifier));
+                subscription = Groups[key] = new LifeUpdatesSubscription(queue);
+                subscription.Connections.Add(connectionId);
+            }
         }
 
-        return Task.CompletedTask;
+        Connections.AddOrUpdate(connectionId, new HashSet<LifeUpdatesIdentifier>()
+        {
+            identifier
+        }, (_, list) => new HashSet<LifeUpdatesIdentifier>(list)
+        {
+            identifier
+        });
+    }
+
+    private static Func<ChannelMessage, Task> GetOnMessage(
+        OnMessage onMessageExternal,
+        LifeUpdatesIdentifier identifier
+    )
+    {
+        var key = identifier.GetKey();
+
+        return async _ =>
+        {
+            string[] connections;
+            using (GroupLock.LockAsync(key))
+            {
+                if (Groups.TryGetValue(key, out var subscription))
+                    connections = subscription.Connections.ToArray();
+                else
+                    return;
+            }
+
+            await onMessageExternal(identifier, connections);
+        };
     }
 
     public void Unsubscribe(string connectionId)
     {
-        var groups = groupsManager.RemoveFromGroupsAndGetNames(connectionId);
-        foreach (var group in groups)
+        if (!Connections.TryRemove(connectionId, out var identifiers)) return;
+
+        foreach (var identifier in identifiers)
         {
-            lock (Locks.GetOrAdd(group, () => new object()))
-            {
-                if (!groupsManager.GroupsExists(group))
-                {
-                    GroupsToQueues[group].Unsubscribe();
-                }
-            }
+            Unsubscribe(connectionId, identifier);
         }
     }
 
-    private Task HandleMessage(LifeUpdatesSubscription lifeUpdatesSubscription, string group)
+    private static void Unsubscribe(string connectionId, LifeUpdatesIdentifier identifier)
     {
-        return lifeUpdatesHandler.HandleAsync(
-            lifeUpdatesSubscription.WidgetId,
-            lifeUpdatesSubscription.Page,
-            group
-        );
+        var key = identifier.GetKey();
+        using (GroupLock.Lock(key))
+        {
+            if (!Groups.TryGetValue(key, out var subscription)) return;
+            if (subscription.Connections.Count != 0) return;
+
+            subscription.Connections.Remove(connectionId);
+            subscription.Queue.Unsubscribe();
+            Groups.TryRemove(key, out _);
+        }
     }
 }

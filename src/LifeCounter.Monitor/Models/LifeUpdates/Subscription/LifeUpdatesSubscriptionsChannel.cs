@@ -3,17 +3,20 @@ using System.Threading.Channels;
 
 namespace LifeCounter.Monitor.Models.LifeUpdates.Subscription;
 
-public class LifeUpdatesSessionsChannel : ILifeUpdatesSubscriber, ILifeUpdatesSessionsProvider
+public class LifeUpdatesSubscribeRequestChannel : ILifeUpdatesSubscriber, ILifeUpdatesSubscribeRequestProvider
 {
-    private static readonly Channel<LifeUpdatesSession> SubscriptionsChannel =
-        Channel.CreateUnbounded<LifeUpdatesSession>();
+    private static readonly Channel<LifeUpdatesSubscribeRequest> SubscriptionsChannel =
+        Channel.CreateUnbounded<LifeUpdatesSubscribeRequest>();
 
     public async Task SubscribeAsync(Guid widgetId, string page, string connectionId)
     {
-        await SubscriptionsChannel.Writer.WriteAsync(new LifeUpdatesSession(connectionId, widgetId, page));
+        await SubscriptionsChannel.Writer.WriteAsync(
+            new LifeUpdatesSubscribeRequest(connectionId,
+                new LifeUpdatesIdentifier(widgetId, page))
+        );
     }
 
-    public async IAsyncEnumerable<LifeUpdatesSession> GetAsync(
+    public async IAsyncEnumerable<LifeUpdatesSubscribeRequest> GetAsync(
         [EnumeratorCancellation] CancellationToken cancellationToken
     )
     {
