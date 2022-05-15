@@ -1,5 +1,6 @@
 const path = require('path');
 const fs = require('fs');
+const copySignalr = require('./signalr-build');
 
 const getFiles = (dir) => fs
   .readdirSync(dir)
@@ -21,5 +22,10 @@ require('esbuild').build({
   entryNames: watch ? '[dir]/[name].watch' : '[dir]/[name].[hash]',
   watch
 })
+  .then(() => copySignalr('monitor'))
   .then(() => watch && console.log('Watching...'))
-  .catch(() => process.exit(1));
+  .catch((e) => {
+    console.error(e);
+    process.exit(1);
+  });
+
