@@ -5,7 +5,7 @@
     @foreach (var row in Model)
     {
         <div class="row">
-            <div class="live-id">@row.LifeId</div>
+            <div class="live-id">@row.LifeId.ToString("N")</div>
             <div class="end-of-life">@row.EndOfLife</div>
         </div>
     }
