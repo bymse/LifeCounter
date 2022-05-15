@@ -1,4 +1,3 @@
-using LifeCounter.Monitor.Models.LifeUpdates;
 using LifeCounter.Monitor.Models.LifeUpdates.Subscription;
 using Microsoft.AspNetCore.SignalR;
 

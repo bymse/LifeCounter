@@ -6,13 +6,17 @@ using LifeCounter.Monitor.Hubs;
 using LifeCounter.Monitor.Models.LifeUpdates;
 using LifeCounter.Monitor.Models.LifeUpdates.Subscription;
 using Microsoft.AspNetCore.SignalR;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSingleton(
+    typeof(LifeUpdatesHubLifeTimeManager<>),
+    typeof(HubLifetimeManager<>)
+);
 builder.Services.AddSignalR();
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
