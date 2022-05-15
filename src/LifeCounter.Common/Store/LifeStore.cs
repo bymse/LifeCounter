@@ -5,20 +5,37 @@ namespace LifeCounter.Common.Store;
 internal class LifeStore : ILifeStore
 {
     private readonly KeepLifeScriptManager keepLifeScriptManager;
+    private readonly GetLivesScriptManager getLivesScriptManager;
     private readonly IDatabaseAsync database;
 
-    public LifeStore(IDatabaseAsync database, KeepLifeScriptManager keepLifeScriptManager)
+    public LifeStore(
+        IDatabaseAsync database,
+        KeepLifeScriptManager keepLifeScriptManager,
+        GetLivesScriptManager getLivesScriptManager
+    )
     {
         this.database = database;
         this.keepLifeScriptManager = keepLifeScriptManager;
+        this.getLivesScriptManager = getLivesScriptManager;
     }
 
-    public async Task KeepLifeAsync(Guid widgetId, string page, Guid lifeId, DateTimeOffset lifeEnd)
+    public async Task KeepLifeAsync(
+        Guid widgetId,
+        string page,
+        Guid lifeId,
+        IReadOnlyDictionary<string, string> properties,
+        DateTimeOffset lifeEnd
+    )
     {
+        var lifeKey = GetLifeIdStr(lifeId);
+        var widgetKey = GetKey(widgetId, page);
+
         await keepLifeScriptManager.CallAsync(
-            GetKey(widgetId, page),
-            GetLifeIdStr(lifeId),
-            lifeEnd.ToUnixTimeSeconds()
+            widgetKey,
+            lifeKey,
+            lifeEnd.ToUnixTimeSeconds(),
+            GetPropsKey(widgetKey),
+            PropertiesHelper.ToStoredString(properties)
         );
     }
 
@@ -27,17 +44,12 @@ internal class LifeStore : ILifeStore
         return database.SortedSetRemoveAsync(GetKey(widgetId, page), GetLifeIdStr(lifeId));
     }
 
-    public async Task<IReadOnlyList<LifeModel>> GetAliveAsync(Guid widgetId, string page, DateTimeOffset now)
+    public async Task<IReadOnlyList<LifeModel>> GetAliveAsync(Guid widgetId, string page)
     {
-        var values = await database.SortedSetRangeByRankWithScoresAsync(GetKey(widgetId, page));
+        var key = GetKey(widgetId, page);
+        var results = (RedisResult[])await getLivesScriptManager.CallAsync(key, GetPropsKey(key));
 
-        return values
-            .Select(e => new LifeModel
-            {
-                LifeId = Guid.TryParse(e.Element, out var lifeId) ? lifeId : Guid.Empty,
-                LifeEnd = DateTimeOffset.FromUnixTimeSeconds((long)e.Score),
-            })
-            .ToArray();
+        return LifeModelHelper.FromRedisResult(results);
     }
 
     public ChannelMessageQueue Subscribe(Guid widgetId, string page)
@@ -47,13 +59,9 @@ internal class LifeStore : ILifeStore
             .Subscribe($"__keyspace@*__:{GetKey(widgetId, page)}");
     }
 
-    private static string GetKey(Guid widgetId, string page)
-    {
-        return $"widget:{widgetId:N}:page:{page}";
-    }
+    private static string GetKey(Guid widgetId, string page) => $"widget:{widgetId:N}:page:{page}";
 
-    private static string GetLifeIdStr(Guid lifeId)
-    {
-        return lifeId.ToString("N");
-    }
+    private static string GetLifeIdStr(Guid lifeId) => lifeId.ToString("N");
+
+    private static string GetPropsKey(string key) => $"props:{key}";
 }

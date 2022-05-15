@@ -7,18 +7,12 @@
 ## Widget
 
 1. Send info about user with beacon request
+2. Additional data for "life"
 
 ## Monitor
 
 Realtime dashboard with "lives".
 Table: `id, end of life`
-
-Tech: SignalR https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr
-
-1. Add connections to groups
-2. Create redis-sub for a group
-3. Remove connections from groups on disconnect 
-4. Remove sub if group is empty
 
 
 ### Other

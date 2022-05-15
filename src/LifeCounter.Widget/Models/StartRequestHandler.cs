@@ -20,6 +20,7 @@ public class StartRequestHandler
             startRequest.WidgetId,
             startRequest.Page,
             lifeId,
+            new Dictionary<string, string>(),
             lifeEndProvider.GetLifeEnd()
         );
         return new StartResponse(lifeId);
