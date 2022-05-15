@@ -40,7 +40,13 @@ function handleEnableUpdatesChange() {
   const checkbox = document.getElementById('enable-updates');
   checkbox.addEventListener('change', (e) => {
     if (e.target.checked) {
-      startConnection();
+      startConnection()
+        .then(() => {
+          const {widgetId, page} = appModel;
+          connection.invoke('Refresh', widgetId, page)
+            .catch(e => console.error(e));
+        })
+      ;
     } else {
       connection.stop();
     }

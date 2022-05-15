@@ -4,15 +4,15 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace LifeCounter.Monitor.Models.LifeUpdates;
 
-public class LifeUpdatesNotificationHandler : ILifeUpdatesNotificationHandler
+public class LifeUpdatesUpdateSender : ILifeUpdatesUpdateSender
 {
-    private readonly ILogger<LifeUpdatesNotificationHandler> logger;
+    private readonly ILogger<LifeUpdatesUpdateSender> logger;
     private readonly IHubContext<LifeUpdatesHub> hubContext;
     private readonly DashboardRowsViewModelBuilder rowsViewModelBuilder;
     private readonly IViewRenderService viewRenderService;
 
-    public LifeUpdatesNotificationHandler(
-        ILogger<LifeUpdatesNotificationHandler> logger,
+    public LifeUpdatesUpdateSender(
+        ILogger<LifeUpdatesUpdateSender> logger,
         IHubContext<LifeUpdatesHub> hubContext,
         IViewRenderService viewRenderService,
         DashboardRowsViewModelBuilder rowsViewModelBuilder
@@ -24,7 +24,7 @@ public class LifeUpdatesNotificationHandler : ILifeUpdatesNotificationHandler
         this.rowsViewModelBuilder = rowsViewModelBuilder;
     }
 
-    public async Task HandleAsync(LifeUpdatesIdentifier identifier, IReadOnlyList<string> clients)
+    public async Task SendAsync(LifeUpdatesIdentifier identifier, IReadOnlyList<string> clients)
     {
         try
         {

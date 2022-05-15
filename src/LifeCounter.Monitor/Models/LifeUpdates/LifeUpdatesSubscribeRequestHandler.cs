@@ -6,19 +6,19 @@ namespace LifeCounter.Monitor.Models.LifeUpdates;
 public class LifeUpdatesSubscribeRequestHandler
 {
     private readonly ILifeUpdatesSubscriptionsManager subscriptionsManager;
-    private readonly ILifeUpdatesNotificationHandler notificationHandler;
+    private readonly ILifeUpdatesUpdateSender updateSender;
 
     public LifeUpdatesSubscribeRequestHandler(
         ILifeUpdatesSubscriptionsManager subscriptionsManager,
-        ILifeUpdatesNotificationHandler notificationHandler
+        ILifeUpdatesUpdateSender updateSender
     )
     {
         this.subscriptionsManager = subscriptionsManager;
-        this.notificationHandler = notificationHandler;
+        this.updateSender = updateSender;
     }
 
     public void Handle(LifeUpdatesSubscribeRequest request)
     {
-        subscriptionsManager.Subscribe(request, notificationHandler.HandleAsync);
+        subscriptionsManager.Subscribe(request, updateSender.SendAsync);
     }
 }
