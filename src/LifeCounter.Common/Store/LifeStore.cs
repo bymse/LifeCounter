@@ -6,17 +6,20 @@ internal class LifeStore : ILifeStore
 {
     private readonly KeepLifeScriptManager keepLifeScriptManager;
     private readonly GetLivesScriptManager getLivesScriptManager;
+    private readonly FinishLifeScriptManager finishLifeScriptManager;
     private readonly IDatabaseAsync database;
 
     public LifeStore(
         IDatabaseAsync database,
         KeepLifeScriptManager keepLifeScriptManager,
-        GetLivesScriptManager getLivesScriptManager
+        GetLivesScriptManager getLivesScriptManager,
+        FinishLifeScriptManager finishLifeScriptManager
     )
     {
         this.database = database;
         this.keepLifeScriptManager = keepLifeScriptManager;
         this.getLivesScriptManager = getLivesScriptManager;
+        this.finishLifeScriptManager = finishLifeScriptManager;
     }
 
     public async Task KeepLifeAsync(
@@ -39,9 +42,10 @@ internal class LifeStore : ILifeStore
         );
     }
 
-    public Task FinishLifeAsync(Guid widgetId, string page, Guid lifeId)
+    public async Task FinishLifeAsync(Guid widgetId, string page, Guid lifeId)
     {
-        return database.SortedSetRemoveAsync(GetKey(widgetId, page), GetLifeIdStr(lifeId));
+        var key = GetKey(widgetId, page);
+        await finishLifeScriptManager.CallAsync(key, GetLifeIdStr(lifeId), GetPropsKey(key));
     }
 
     public async Task<IReadOnlyList<LifeModel>> GetAliveAsync(Guid widgetId, string page)

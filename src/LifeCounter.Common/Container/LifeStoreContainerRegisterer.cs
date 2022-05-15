@@ -11,6 +11,7 @@ public static class LifeStoreContainerRegisterer
                 .UseRedis()
                 .AddTransient<KeepLifeScriptManager>()
                 .AddTransient<GetLivesScriptManager>()
+                .AddTransient<FinishLifeScriptManager>()
                 .AddTransient<ILifeStore, LifeStore>()
             ;
     }
