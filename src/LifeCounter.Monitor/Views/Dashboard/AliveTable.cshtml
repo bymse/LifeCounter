@@ -6,8 +6,13 @@
     {
         <div class="row">
             <div class="live-id">@row.LifeId.ToString("N")</div>
-            <div class="properties">
-                @string.Join(";", row.Properties.Select(e => $"{e.Key}={e.Value}"))
+            <div class="properties" data-properties>
+                @foreach (var (key, value) in row.Properties)
+                {
+                    <div class="property">
+                        <span class="key">@key</span>: <span class="value">@value</span>
+                    </div>
+                }
             </div>
             <div class="end-of-life">@row.EndOfLife</div>
         </div>

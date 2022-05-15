@@ -6,7 +6,7 @@
 
 .alive-table .row {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     column-gap: 1em;
     padding: 0.3em 0.5em;
     color: var(--dark-color);
@@ -31,5 +31,5 @@
 }
 
 .alive-table .row.head {
-    min-width: 35em;
+    min-width: 50em;
 }

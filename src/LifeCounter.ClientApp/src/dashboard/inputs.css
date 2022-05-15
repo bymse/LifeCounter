@@ -1,0 +1,33 @@
+input[type="text"] {
+    padding: 0.3em;
+    border-radius: 0.4em;
+    border: 1px solid var(--second-color);
+    box-shadow: 0 1px 3px var(--first-color);
+    font-family: var(--font-family);
+    font-size: 1em;
+}
+
+input[type="text"]:focus {
+    border: 1px solid var(--dark-color);
+    outline: none;
+}
+
+button[type="submit"] {
+    font-family: var(--font-family);
+    font-size: 1em;
+    background: var(--second-color);
+    color: var(--light-color);
+    border: 0;
+    border-radius: 0.4em;
+    padding: 0.4em 0.6em;
+    cursor: pointer;
+}
+
+button[type="submit"]:active {
+    box-shadow: 0 1px 3px var(--dark-color);
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+}
+

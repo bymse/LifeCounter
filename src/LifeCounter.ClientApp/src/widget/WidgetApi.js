@@ -2,10 +2,10 @@ import {config} from './config'
 const PREFIX = '/widget/api/v1/'
 
 export class WidgetApi {
-  static start(widgetId, page) {
+  static start(widgetId, page, properties) {
     return fetch(`${config.apiUrl}${PREFIX}start`, {
       method: 'POST',
-      body: JSON.stringify({widgetId, page}),
+      body: JSON.stringify({widgetId, page, properties}),
       headers: {
         'Content-type': 'application/json'
       }
@@ -14,8 +14,8 @@ export class WidgetApi {
       .catch(() => ({}));
   }
 
-  static alive(widgetId, page, lifeId) {
-    return WidgetApi.#sendBeacon('alive', {widgetId, page, lifeId});
+  static alive(widgetId, page, lifeId, properties) {
+    return WidgetApi.#sendBeacon('alive', {widgetId, page, lifeId, properties});
   }
 
   static stop(widgetId, page, lifeId) {

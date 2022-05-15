@@ -15,11 +15,14 @@ internal static class PropertiesHelper
     public static IReadOnlyDictionary<string, string> FromStoredString(string stored)
     {
         return stored.Split("&")
-            .Chunk(2)
-            .Select(e => new
+            .Select(e =>
             {
-                key = WebUtility.UrlDecode(e.First()),
-                value = WebUtility.UrlDecode(e.Last())
+                var split = e.Split('=');
+                return new
+                {
+                    key = WebUtility.UrlDecode(split.First()),
+                    value = WebUtility.UrlDecode(split.Last())
+                };
             })
             .Where(e => !string.IsNullOrEmpty(e.key))
             .ToDictionary(e => e.key, e => e.value);

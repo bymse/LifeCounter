@@ -1,9 +1,12 @@
 @model DashboardForm
 
-<div class="form-wrapper">
+<section class="form-wrapper">
+    <label class="checkbox-label">
+        <input id="enable-updates" type="checkbox" checked>Enable updates
+    </label>
     <form asp-controller="Dashboard" asp-action="Index" method="get" asp-route-widgetId="@Model.WidgetId" class="life-form">
         <label asp-for="Page">Page</label>
         <input asp-for="Page"/>
         <button type="submit">Show</button>
     </form>
-</div>
+</section>

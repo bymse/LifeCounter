@@ -8,14 +8,19 @@ const connection = new signalR.HubConnectionBuilder()
   .withUrl('/monitor/life-updates')
   .build();
 
-connection.start()
-  .then(() => {
-    initialize()
-  });
+startConnection()
+  .then(() => handleEnableUpdatesChange());
 
 connection.on('Update', handleMessage);
 
-function initialize() {
+function startConnection() {
+  return connection.start()
+    .then(() => {
+      initializeDashboard();
+    });
+}
+
+function initializeDashboard() {
   const {widgetId, page} = appModel;
   connection.invoke('Start', widgetId, page)
     .catch(e => {
@@ -29,4 +34,15 @@ function handleMessage(html) {
   const newTable = document.createElement('div');
   newTable.innerHTML = html;
   table.replaceWith(newTable.children[0]);
+}
+
+function handleEnableUpdatesChange() {
+  const checkbox = document.getElementById('enable-updates');
+  checkbox.addEventListener('change', (e) => {
+    if (e.target.checked) {
+      startConnection();
+    } else {
+      connection.stop();
+    }
+  })
 }
