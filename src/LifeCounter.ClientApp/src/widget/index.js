@@ -1,21 +1,9 @@
-import {WidgetApi} from "./WidgetApi";
 import {config} from "./config";
-import {initializeHandlers} from "./handlers";
+import {Widget} from "./Widget";
 
-const props = window.LifeStoreProperties || {};
-initialize(config.widgetId, props);
+const {onLoaded, props} = window.LifeStoreConfig || {};
+const widget = window.LifeStoreWidget = new Widget(config.widgetId, config.alivePeriod, props);
 
-function getPage() {
-  const search = document.location.search;
-  return document.location.pathname + (!!search ? `${search}` : '');
-}
-
-function initialize(widgetId, props) {
-  const page = getPage();
-  WidgetApi.start(widgetId, page, props)
-    .then(({lifeId}) => {
-      if (lifeId) {
-        initializeHandlers(widgetId, page, lifeId, props);
-      }
-    })
+if (onLoaded) {
+  onLoaded(widget);
 }
