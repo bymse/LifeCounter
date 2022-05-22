@@ -1,12 +1,12 @@
-using LifeCounter.Common.Store;
+using LifeCounter.DataLayer.LifeStore;
 
 namespace LifeCounter.Monitor.Models.Dashboard;
 
 public class DashboardRowsViewModelBuilder
 {
-    private readonly ILifeStore lifeStore;
+    private readonly ILifeStoreRepository lifeStore;
 
-    public DashboardRowsViewModelBuilder(ILifeStore lifeStore)
+    public DashboardRowsViewModelBuilder(ILifeStoreRepository lifeStore)
     {
         this.lifeStore = lifeStore;
     }

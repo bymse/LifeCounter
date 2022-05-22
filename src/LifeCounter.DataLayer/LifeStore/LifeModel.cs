@@ -1,6 +1,6 @@
 using System.Collections.Immutable;
 
-namespace LifeCounter.Common.Store;
+namespace LifeCounter.DataLayer.LifeStore;
 
 public class LifeModel
 {

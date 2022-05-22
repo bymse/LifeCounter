@@ -1,6 +1,6 @@
 using StackExchange.Redis;
 
-namespace LifeCounter.Common.Store;
+namespace LifeCounter.DataLayer.LifeStore;
 
 internal class GetLivesScriptManager
 {

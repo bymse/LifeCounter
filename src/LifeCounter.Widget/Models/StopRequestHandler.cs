@@ -1,12 +1,12 @@
-using LifeCounter.Common.Store;
+using LifeCounter.DataLayer.LifeStore;
 
 namespace LifeCounter.Widget.Models;
 
 public class StopRequestHandler
 {
-    private readonly ILifeStore lifeStore;
+    private readonly ILifeStoreRepository lifeStore;
 
-    public StopRequestHandler(ILifeStore lifeStore)
+    public StopRequestHandler(ILifeStoreRepository lifeStore)
     {
         this.lifeStore = lifeStore;
     }

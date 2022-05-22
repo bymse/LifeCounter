@@ -1,5 +1,6 @@
 using LifeCounter.Common.Container;
 using LifeCounter.Common.Front;
+using LifeCounter.DataLayer.Container;
 using LifeCounter.Monitor.Background;
 using LifeCounter.Monitor.Controllers;
 using LifeCounter.Monitor.Hubs;

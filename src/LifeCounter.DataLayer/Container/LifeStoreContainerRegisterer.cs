@@ -1,7 +1,7 @@
-using LifeCounter.Common.Store;
+using LifeCounter.DataLayer.LifeStore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace LifeCounter.Common.Container;
+namespace LifeCounter.DataLayer.Container;
 
 public static class LifeStoreContainerRegisterer
 {
@@ -12,7 +12,7 @@ public static class LifeStoreContainerRegisterer
                 .AddTransient<KeepLifeScriptManager>()
                 .AddTransient<GetLivesScriptManager>()
                 .AddTransient<FinishLifeScriptManager>()
-                .AddTransient<ILifeStore, LifeStore>()
+                .AddTransient<ILifeStoreRepository, LifeStoreRepository>()
             ;
     }
 }

@@ -1,10 +1,10 @@
-using LifeCounter.Common.Store;
+using LifeCounter.DataLayer.LifeStore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using StackExchange.Redis;
 
-namespace LifeCounter.Common.Container;
+namespace LifeCounter.DataLayer.Container;
 
 internal static class RedisRegisterer
 {

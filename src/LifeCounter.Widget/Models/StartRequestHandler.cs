@@ -1,13 +1,13 @@
-using LifeCounter.Common.Store;
+using LifeCounter.DataLayer.LifeStore;
 
 namespace LifeCounter.Widget.Models;
 
 public class StartRequestHandler
 {
-    private readonly ILifeStore lifeStore;
+    private readonly ILifeStoreRepository lifeStore;
     private readonly LifeEndProvider lifeEndProvider;
 
-    public StartRequestHandler(ILifeStore lifeStore, LifeEndProvider lifeEndProvider)
+    public StartRequestHandler(ILifeStoreRepository lifeStore, LifeEndProvider lifeEndProvider)
     {
         this.lifeStore = lifeStore;
         this.lifeEndProvider = lifeEndProvider;

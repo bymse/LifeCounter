@@ -1,15 +1,15 @@
 using StackExchange.Redis;
 
-namespace LifeCounter.Common.Store;
+namespace LifeCounter.DataLayer.LifeStore;
 
-internal class LifeStore : ILifeStore
+internal class LifeStoreRepository : ILifeStoreRepository
 {
     private readonly KeepLifeScriptManager keepLifeScriptManager;
     private readonly GetLivesScriptManager getLivesScriptManager;
     private readonly FinishLifeScriptManager finishLifeScriptManager;
     private readonly IDatabaseAsync database;
 
-    public LifeStore(
+    public LifeStoreRepository(
         IDatabaseAsync database,
         KeepLifeScriptManager keepLifeScriptManager,
         GetLivesScriptManager getLivesScriptManager,

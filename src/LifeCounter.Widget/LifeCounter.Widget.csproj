@@ -9,6 +9,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\LifeCounter.Common\LifeCounter.Common.csproj" />
+      <ProjectReference Include="..\LifeCounter.DataLayer\LifeCounter.DataLayer.csproj" />
     </ItemGroup>
 
     <ItemGroup>

@@ -1,7 +1,7 @@
 using System.Collections.Immutable;
 using StackExchange.Redis;
 
-namespace LifeCounter.Common.Store;
+namespace LifeCounter.DataLayer.LifeStore;
 
 internal static class LifeModelHelper
 {

@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace LifeCounter.Common.Store;
+namespace LifeCounter.DataLayer.LifeStore;
 
 internal static class PropertiesHelper
 {

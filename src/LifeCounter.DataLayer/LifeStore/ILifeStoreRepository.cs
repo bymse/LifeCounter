@@ -1,8 +1,8 @@
 using StackExchange.Redis;
 
-namespace LifeCounter.Common.Store;
+namespace LifeCounter.DataLayer.LifeStore;
 
-public interface ILifeStore
+public interface ILifeStoreRepository
 {
     Task KeepLifeAsync(Guid widgetId,
         string page,

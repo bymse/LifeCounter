@@ -1,7 +1,7 @@
 using System.Collections.Concurrent;
 using LifeCounter.Common.Container;
-using LifeCounter.Common.Store;
 using LifeCounter.Common.Utilities.Lock;
+using LifeCounter.DataLayer.LifeStore;
 using StackExchange.Redis;
 
 namespace LifeCounter.Monitor.Models.LifeUpdates.Subscription;
@@ -14,9 +14,9 @@ public class LifeUpdatesSubscriptionsManager : ILifeUpdatesSubscriptionsManager
     private static readonly ConcurrentDictionary<string, LifeUpdatesSubscription> Groups = new();
     private static readonly ConcurrentDictionary<string, ISet<LifeUpdatesIdentifier>> Connections = new();
 
-    private readonly ILifeStore lifeStore;
+    private readonly ILifeStoreRepository lifeStore;
 
-    public LifeUpdatesSubscriptionsManager(ILifeStore lifeStore)
+    public LifeUpdatesSubscriptionsManager(ILifeStoreRepository lifeStore)
     {
         this.lifeStore = lifeStore;
     }
