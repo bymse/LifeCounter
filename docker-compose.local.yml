@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  life-counter-pg:
+    image: "postgres"
+    volumes:
+      - D:\db\pg\life-counter:/var/lib/postgresql/data
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+      PGDATA: /var/lib/postgresql/data
+    ports:
+      - 5432:5432
+  life-counter-redis:
+    image: "redis"
+    command: redis-server --notify-keyspace-events "zxK"
+    ports:
+      - 6379:6379
