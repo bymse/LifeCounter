@@ -3,17 +3,21 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("LifeCounterDbContextConnection") ?? throw new InvalidOperationException("Connection string 'LifeCounterDbContextConnection' not found.");
 
-// Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<LifeCounterDbContext>(options =>
-{
-    options.UseSqlite(connectionString);
-});
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+    options.UseSqlite(connectionString));;
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<LifeCounterDbContext>();;
+
+builder.Services.AddDbContext<LifeCounterDbContext>();
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+builder.Services
+    .AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<LifeCounterDbContext>();
+
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
