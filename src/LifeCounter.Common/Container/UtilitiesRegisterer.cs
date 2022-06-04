@@ -9,7 +9,7 @@ public static class UtilitiesRegisterer
     public static IServiceCollection UseUtilities(this IServiceCollection serviceCollection, string section)
     {
         serviceCollection.AddSingleton<ICurrentAppSectionProvider>(_ => new CurrentAppSectionProvider(section));
-        serviceCollection.AddScoped<IFrontBundleProvider, FrontBundleProvider>();
+        serviceCollection.AddSingleton<IFrontBundleProvider, FrontBundleProvider>();
         return serviceCollection;
     }
 }
