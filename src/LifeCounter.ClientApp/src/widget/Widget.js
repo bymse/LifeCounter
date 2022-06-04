@@ -36,7 +36,7 @@ export class Widget {
     document.addEventListener('visibilitychange', this.#handleVisibilityChange);
   }
 
-  #handleVisibilityChange() {
+  #handleVisibilityChange = () => {
     if (document.visibilityState === 'hidden') {
       this.isActive = false;
       this.#stopLife();

@@ -1,6 +1,8 @@
-const path = require('path');
-const fs = require('fs');
-const copySignalr = require('./signalr-build');
+import path from 'path';
+import fs from 'fs'
+import {sassPlugin} from 'esbuild-sass-plugin';
+import copySignalr from './signalr-build.mjs'
+import esbuild from 'esbuild'
 
 const getFiles = (dir) => fs
   .readdirSync(dir)
@@ -8,19 +10,20 @@ const getFiles = (dir) => fs
 
 const entryPoints = fs
   .readdirSync(path.resolve('entry'))
-  .flatMap(dir => getFiles(path.join(__dirname, 'entry', dir)));
+  .flatMap(dir => getFiles(path.resolve('entry', dir)));
 
-fs.rmSync(path.join(__dirname, 'build'), {recursive: true, force: true});
+fs.rmSync(path.resolve('build'), {recursive: true, force: true});
 
 const watch = process.argv[2] === 'watch';
 
-require('esbuild').build({
+esbuild.build({
   entryPoints,
   bundle: true,
   outdir: 'build',
   minify: true,
   entryNames: watch ? '[dir]/[name].watch' : '[dir]/[name].[hash]',
-  watch
+  watch,
+  plugins: [sassPlugin()]
 })
   .then(() => copySignalr('monitor'))
   .then(() => watch && console.log('Watching...'))

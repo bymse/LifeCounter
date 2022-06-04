@@ -2,11 +2,12 @@
   "name": "life-counter",
   "version": "1.0.0",
   "scripts": {
-    "build": "node build.js",
-    "watch": "node build.js watch"
+    "build": "node --experimental-json-modules build.mjs",
+    "watch": "node --experimental-json-modules build.mjs watch"
   },
   "dependencies": {
     "@microsoft/signalr": "^6.0.4",
-    "esbuild": "^0.14.27"
+    "esbuild": "^0.14.27",
+    "esbuild-sass-plugin": "^2.2.6"
   }
 }
