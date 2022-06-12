@@ -1,0 +1,9 @@
+@page
+@model LifeCounter.Site.Areas.Admin.Pages.Widgets.Index
+
+<div class="widgets-list">
+    @foreach (var card in Model.WidgetCards)
+    {
+        <partial name="WidgetCard" model="@card"/>
+    }
+</div>

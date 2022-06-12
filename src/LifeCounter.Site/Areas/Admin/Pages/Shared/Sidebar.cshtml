@@ -1,8 +1,9 @@
-@using LifeCounter.Site.Areas.Admin.Pages.Widgets
-@using LifeCounter.Site.Pages
 @using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Index = LifeCounter.Site.Areas.Admin.Pages.Widgets.Index
+@using LifeCounter.Site.Areas.Admin.Pages.Widgets
 <nav class="admin-navigation">
-    @{ await Item(nameof(List), "Widgets list"); }
+    @{ await Item(nameof(Index), "Widgets list"); }
+    @{ await Item(nameof(Item), "Create widget"); }
 </nav>
 
 @functions

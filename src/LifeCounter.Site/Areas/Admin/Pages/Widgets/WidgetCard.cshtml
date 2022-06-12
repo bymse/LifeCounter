@@ -1,0 +1,9 @@
+@model LifeCounter.Site.Areas.Admin.Pages.Models.WidgetCardViewModel
+
+<a asp-page="@nameof(Item)" asp-route-widgetId="@Model.PublicId" class="widget-card">
+    <p class="widget-card__title">
+        @Model.Title
+    </p>
+    <span class="widget-card__id">@Model.PublicId.ToString("N")</span>
+    <span class="widget-card__owner">Owner: @Model.Owner</span>
+</a>
