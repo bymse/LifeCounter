@@ -8,15 +8,21 @@
     <title>@ViewData["Title"] - LifeCounter.Site</title>
     @this.Css("site")
 </head>
-<body class="layout-container">
-<header class="header">
-
+<body class="admin-layout">
+<header class="admin-header">
+    @await Html.PartialAsync("Header")
 </header>
-<section>
-    @RenderBody()
-</section>
 
-<footer class="footer">
+<aside class="admin-sidebar">
+    @await Html.PartialAsync("Sidebar")
+</aside>
+
+<main class="admin-content">
+    @RenderBody()
+</main>
+
+<footer class="admin-footer">
+    @await Html.PartialAsync("Footer")
 </footer>
 
 @await RenderSectionAsync("Scripts", required: false)
