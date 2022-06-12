@@ -23,4 +23,10 @@
       <ProjectReference Include="..\LifeCounter.DataLayer\LifeCounter.DataLayer.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <AdditionalFiles Include="Areas\Admin\Pages\Shared\Footer.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Pages\Shared\Header.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Pages\Shared\Sidebar.cshtml" />
+    </ItemGroup>
+
 </Project>

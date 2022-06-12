@@ -1,0 +1,14 @@
+@using LifeCounter.Site.Areas.Admin.Pages.Widgets
+@using LifeCounter.Site.Pages
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+<nav class="admin-navigation">
+    @{ await Item(nameof(List), "Widgets list"); }
+</nav>
+
+@functions
+{
+    async Task Item(string? pageName, string title)
+    {
+        <a asp-page="@pageName" class="admin-navigation__link">@title</a>
+    }
+}

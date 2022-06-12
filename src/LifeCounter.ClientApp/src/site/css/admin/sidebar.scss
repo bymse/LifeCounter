@@ -1,3 +1,16 @@
 .admin-sidebar {
     border-right: 1px solid black;
+    padding: 1em;
+}
+
+.admin-navigation {
+    display: flex;
+    flex-direction: column;
+    
+    &__link {
+        color: blue;
+        &:visited {
+            color: blue;
+        }
+    }
 }
