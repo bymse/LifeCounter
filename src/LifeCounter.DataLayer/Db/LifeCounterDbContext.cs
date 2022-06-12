@@ -26,4 +26,15 @@ public class LifeCounterDbContext : IdentityDbContext
         
         base.OnConfiguring(optionsBuilder);
     }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+        builder.HasPostgresExtension("uuid-ossp");
+
+        builder.Entity<Widget>(e => e
+            .Property(r => r.WidgetId)
+            .HasDefaultValueSql("uuid_generate_v4()")
+        );
+    }
 }
