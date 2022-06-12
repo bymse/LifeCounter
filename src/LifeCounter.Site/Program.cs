@@ -1,22 +1,20 @@
+using LifeCounter.Common.Container;
+using LifeCounter.Common.Front;
+using LifeCounter.DataLayer.Container;
 using LifeCounter.DataLayer.Db;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("LifeCounterDbContextConnection") ?? throw new InvalidOperationException("Connection string 'LifeCounterDbContextConnection' not found.");
-
-builder.Services.AddDbContext<LifeCounterDbContext>(options =>
-    options.UseSqlite(connectionString));;
-
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<LifeCounterDbContext>();;
-
-builder.Services.AddDbContext<LifeCounterDbContext>();
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services
     .AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<LifeCounterDbContext>();
+
+builder.Services
+    .UseUtilities("site")
+    .AddDb();
+builder.Services.AddDbContext<LifeCounterDbContext>();
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddRazorPages();
 
@@ -35,7 +33,7 @@ else
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+app.UseFront();
 
 app.UseRouting();
 
