@@ -10,11 +10,11 @@
 </head>
 <body class="admin-layout">
 <header class="admin-header">
-    @await Html.PartialAsync("Header")
+    <partial name="Header"/>
 </header>
 
 <aside class="admin-sidebar">
-    @await Html.PartialAsync("Sidebar")
+    <partial name="Sidebar"/>
 </aside>
 
 <main class="admin-content">
@@ -22,7 +22,7 @@
 </main>
 
 <footer class="admin-footer">
-    @await Html.PartialAsync("Footer")
+    <partial name="Footer"/>
 </footer>
 
 @await RenderSectionAsync("Scripts", required: false)

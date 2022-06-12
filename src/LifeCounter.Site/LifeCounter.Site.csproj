@@ -29,4 +29,8 @@
       <AdditionalFiles Include="Areas\Admin\Pages\Shared\Sidebar.cshtml" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Areas\Identity\Pages" />
+    </ItemGroup>
+
 </Project>
