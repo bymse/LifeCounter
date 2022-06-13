@@ -11,12 +11,16 @@ builder.Services
     .AddEntityFrameworkStores<LifeCounterDbContext>();
 
 builder.Services
+    .UseAutoDependencies(typeof(Program).Assembly)
     .UseUtilities("site")
     .AddDb();
 builder.Services.AddDbContext<LifeCounterDbContext>();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages(e =>
+{
+    e.Conventions.AuthorizeAreaFolder("Admin", "/");
+});
 
 var app = builder.Build();
 

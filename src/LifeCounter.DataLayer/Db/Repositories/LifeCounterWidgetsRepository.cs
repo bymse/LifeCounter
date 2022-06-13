@@ -20,4 +20,11 @@ internal class LifeCounterWidgetsRepository : ILifeCounterWidgetsRepository
             .Where(e => e.OwnerId == ownerId)
             .ToArray();
     }
+
+    public Widget? FindWidget(Guid id)
+    {
+        return dbContext
+            .Widgets
+            .FirstOrDefault(e => e.WidgetId == id);
+    }
 }
