@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace LifeCounter.Widget.Validation;
+namespace LifeCounter.Common.Validation;
 
-public class LifeIdAttribute : ValidationAttribute
+public class RequiredGuidAttribute : ValidationAttribute
 {
     public override bool IsValid(object? value)
     {

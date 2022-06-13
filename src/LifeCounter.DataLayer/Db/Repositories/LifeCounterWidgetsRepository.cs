@@ -25,6 +25,16 @@ internal class LifeCounterWidgetsRepository : ILifeCounterWidgetsRepository
     {
         return dbContext
             .Widgets
+            .Include(e => e.Owner)
             .FirstOrDefault(e => e.WidgetId == id);
+    }
+
+    public void SaveChanges() => dbContext.SaveChanges();
+    
+    public Widget Insert(Widget widget)
+    {
+        dbContext.Widgets.Add(widget);
+        SaveChanges();
+        return widget;
     }
 }

@@ -9,9 +9,9 @@ public class Widget
     public Guid WidgetId { get; init; }
     
     [StringLength(512)]
-    public string Title { get; init; }
+    public string Title { get; set; }
     
-    public Guid PublicUid { get; init; }
+    public Guid PublicUid { get; set; }
     
     public string OwnerId { get; init; }
     

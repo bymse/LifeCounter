@@ -1,6 +1,6 @@
 using System.Collections.Immutable;
 using System.Text.Json.Serialization;
-using LifeCounter.Widget.Validation;
+using LifeCounter.Common.Validation;
 
 namespace LifeCounter.Widget.Models;
 
@@ -12,7 +12,7 @@ public class LifeRequest
     [JsonPropertyName("page")]
     public string Page { get; init; } = null!;
     
-    [LifeId]
+    [RequiredGuid]
     [JsonPropertyName("lifeId")]
     public Guid LifeId { get; init; }
     

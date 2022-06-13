@@ -1,4 +1,15 @@
 @page "{widgetId:guid?}"
 @model LifeCounter.Site.Areas.Admin.Pages.Widgets.Item
 
-<text>@Model.Widget?.PublicUid</text>
+<form method="post" asp-antiforgery="true">
+    
+    <label asp-for="Form.Title"></label>
+    <input asp-for="Form.Title"/>
+    @Html.ValidationMessageFor(e => e.Form.Title)
+    
+    <label asp-for="Form.PublicId"></label>
+    <input asp-for="Form.PublicId"/>
+    @Html.ValidationMessageFor(e => e.Form.PublicId)
+    
+    <button type="submit">Submit</button>
+</form>
