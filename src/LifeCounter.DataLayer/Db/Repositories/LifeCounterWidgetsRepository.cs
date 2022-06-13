@@ -16,7 +16,6 @@ internal class LifeCounterWidgetsRepository : ILifeCounterWidgetsRepository
     {
         return dbContext
             .Widgets
-            .Include(e => e.Owner)
             .AsNoTracking()
             .Where(e => e.OwnerId == ownerId)
             .ToArray();
