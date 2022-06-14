@@ -9,6 +9,7 @@ builder.Services.AddControllers();
 builder.Services
     .UseLifeStore()
     .UseAutoDependencies(typeof(WidgetApiController).Assembly)
+    .AddDb()
     .UseUtilities("widget")
     ;
 

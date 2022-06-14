@@ -30,7 +30,8 @@ public class Item : PageModel
         Form = new WidgetForm
         {
             Title = Widget?.Title ?? "",
-            PublicId = Widget?.PublicUid ?? Guid.NewGuid()
+            PublicId = Widget?.PublicUid ?? Guid.NewGuid(),
+            Enabled = Widget?.Enabled ?? false
         };
     }
 
@@ -49,6 +50,7 @@ public class Item : PageModel
 
         widget.Title = Form.Title;
         widget.PublicUid = Form.PublicId!.Value;
+        widget.Enabled = Form.Enabled;
 
         if (Widget == null)
         {

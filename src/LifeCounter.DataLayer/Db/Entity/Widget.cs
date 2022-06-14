@@ -15,6 +15,8 @@ public class Widget
     
     public string OwnerId { get; init; }
     
+    public bool Enabled { get; set; }
+    
     [Column(TypeName = "timestamp")]
     public DateTime CreatedDate { get; init; }
 

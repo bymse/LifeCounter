@@ -11,6 +11,10 @@
     <input asp-for="Form.PublicId"/>
     @Html.ValidationMessageFor(e => e.Form.PublicId)
     
+    <label asp-for="Form.Enabled"></label>
+    <input asp-for="Form.Enabled"/>
+    @Html.ValidationMessageFor(e => e.Form.Enabled)
+    
     @if(Model.Widget != null)
     {
         <label>Created</label>

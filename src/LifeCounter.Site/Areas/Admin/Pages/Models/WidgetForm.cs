@@ -13,4 +13,8 @@ public class WidgetForm
     [StringLength(512)]
     [Display(Name = "Title")]
     public string Title { get; init; } = "";
+    
+    [Required]
+    [Display(Name = "Enabled")]
+    public bool Enabled { get; init; }
 }
