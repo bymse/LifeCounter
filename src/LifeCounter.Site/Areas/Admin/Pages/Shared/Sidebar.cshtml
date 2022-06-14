@@ -1,15 +1,11 @@
-@using Microsoft.AspNetCore.Mvc.TagHelpers
 @using Index = LifeCounter.Site.Areas.Admin.Pages.Widgets.Index
 @using LifeCounter.Site.Areas.Admin.Pages.Widgets
-<nav class="admin-navigation">
-    @{ await Item(nameof(Index), "Widgets list"); }
-    @{ await Item(nameof(Item), "Create widget"); }
-</nav>
 
-@functions
-{
-    async Task Item(string? pageName, string title)
-    {
-        <a asp-page="@pageName" class="admin-navigation__link">@title</a>
-    }
+@{
+    const string css = "admin-navigation__link";
 }
+
+<nav class="admin-navigation">
+    <a asp-page="@nameof(Index)" class="@css">Widgets list</a>
+    <a asp-page="@nameof(Item)" asp-route-widgetId="@null" class="@css">Create widget</a>
+</nav>
