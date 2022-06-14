@@ -10,6 +10,13 @@
     <label asp-for="Form.PublicId"></label>
     <input asp-for="Form.PublicId"/>
     @Html.ValidationMessageFor(e => e.Form.PublicId)
+    
+    @if(Model.Widget != null)
+    {
+        <label>Created</label>
+        <input disabled value="@Model.Widget?.CreatedDate">
+        <span></span>
+    }
 
     <div class="widget-form__buttons">
         <button type="submit" asp->Submit</button>
