@@ -1,4 +1,16 @@
 
 .widget-form {
+    display: grid;
+    grid-template-columns: max-content 20em auto;
+    padding: 0.2em;
+    gap: 0.2em;
     
+    &__buttons {
+        display: flex;
+        column-gap: 0.2em;    
+    }
+    
+    & label {
+        padding: 0.2em;
+    }
 }

@@ -7,5 +7,6 @@ public interface ILifeCounterWidgetsRepository
     IReadOnlyList<Widget> GetWidgets(string ownerId);
     Widget? FindWidget(Guid id);
     void SaveChanges();
-    Widget Insert(Widget widget);
+    void Insert(Widget widget);
+    void Delete(Widget widget);
 }

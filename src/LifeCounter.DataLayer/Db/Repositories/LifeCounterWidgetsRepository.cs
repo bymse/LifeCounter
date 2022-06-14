@@ -31,10 +31,15 @@ internal class LifeCounterWidgetsRepository : ILifeCounterWidgetsRepository
 
     public void SaveChanges() => dbContext.SaveChanges();
     
-    public Widget Insert(Widget widget)
+    public void Insert(Widget widget)
     {
         dbContext.Widgets.Add(widget);
         SaveChanges();
-        return widget;
+    }
+
+    public void Delete(Widget widget)
+    {
+        dbContext.Widgets.Remove(widget);
+        SaveChanges();
     }
 }

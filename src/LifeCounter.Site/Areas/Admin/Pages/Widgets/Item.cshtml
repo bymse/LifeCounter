@@ -1,15 +1,21 @@
 @page "{widgetId:guid?}"
 @model LifeCounter.Site.Areas.Admin.Pages.Widgets.Item
 
-<form method="post" asp-antiforgery="true">
-    
+<form method="post" asp-antiforgery="true" class="widget-form" asp-page-handler="">
+
     <label asp-for="Form.Title"></label>
     <input asp-for="Form.Title"/>
     @Html.ValidationMessageFor(e => e.Form.Title)
-    
+
     <label asp-for="Form.PublicId"></label>
     <input asp-for="Form.PublicId"/>
     @Html.ValidationMessageFor(e => e.Form.PublicId)
-    
-    <button type="submit">Submit</button>
+
+    <div class="widget-form__buttons">
+        <button type="submit" asp->Submit</button>
+        @if (Model.Widget != null)
+        {
+            <button asp-page-handler="delete" type="submit">Delete</button>
+        }
+    </div>
 </form>

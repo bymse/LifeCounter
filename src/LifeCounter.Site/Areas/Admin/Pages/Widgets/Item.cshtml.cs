@@ -38,9 +38,9 @@ public class Item : PageModel
     {
         if (!ModelState.IsValid)
         {
-            return Page(); 
+            return Page();
         }
-        
+
         var widget = Widget ?? new Widget
         {
             OwnerId = userManager.GetUserId(User),
@@ -61,6 +61,16 @@ public class Item : PageModel
 
         Widget = widget;
         return RedirectToPage(new { widgetId = widget.WidgetId });
+    }
+
+    public IActionResult OnPostDelete()
+    {
+        if (Widget != null)
+        {
+            widgetsRepository.Delete(Widget);
+        }
+
+        return RedirectToPage(nameof(Index));
     }
 
     [BindProperty] public WidgetForm Form { get; set; } = null!;
