@@ -4,6 +4,5 @@ public interface IConfigurationProvider
 {
     TimeSpan GetLifeLength();
     TimeSpan GetAlivePeriod();
-    string GetJsPath();
     string GetApiUrl();
 }

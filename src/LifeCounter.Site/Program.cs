@@ -36,7 +36,6 @@ else
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
 app.UseFront();
 
 app.UseRouting();

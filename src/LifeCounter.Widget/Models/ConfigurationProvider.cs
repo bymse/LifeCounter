@@ -19,11 +19,6 @@ public class ConfigurationProvider : IConfigurationProvider
         return configuration.GetValue<TimeSpan>("Life:AlivePeriod");
     }
 
-    public string GetJsPath()
-    {
-        return configuration.GetValue<string>("JsPath");
-    }
-
     public string GetApiUrl()
     {
         return configuration.GetValue<string>("ApiUrl");
