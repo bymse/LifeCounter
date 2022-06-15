@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace LifeCounter.Widget.Models;
 
-public class StartRequest
+public class StartRequest : IWidgetIdHolder
 {
     [JsonPropertyName("widgetId")]
     public Guid WidgetId { get; init; }

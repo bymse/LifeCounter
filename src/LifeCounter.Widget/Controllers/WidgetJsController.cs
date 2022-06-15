@@ -12,10 +12,10 @@ public class WidgetJsController : Controller
         this.widgetJsRequestHandler = widgetJsRequestHandler;
     }
 
-    [Route("/widget")]
-    public IActionResult GetWidget(Guid widgetId)
+    [Route("/widget/script.js")]
+    public IActionResult GetWidget([FromQuery] WidgetScriptRequest request)
     {
-        var js = widgetJsRequestHandler.GetWidgetJs(widgetId);
+        var js = widgetJsRequestHandler.GetWidgetJs(request.WidgetId);
         return new ContentResult
         {
             Content = js,

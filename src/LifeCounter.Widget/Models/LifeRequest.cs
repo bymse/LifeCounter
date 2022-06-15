@@ -4,7 +4,7 @@ using LifeCounter.Common.Validation;
 
 namespace LifeCounter.Widget.Models;
 
-public class LifeRequest
+public class LifeRequest : IWidgetIdHolder
 {
     [JsonPropertyName("widgetId")]
     public Guid WidgetId { get; init; }
