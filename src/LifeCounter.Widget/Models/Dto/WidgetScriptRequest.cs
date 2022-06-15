@@ -1,4 +1,4 @@
-namespace LifeCounter.Widget.Models;
+namespace LifeCounter.Widget.Models.Dto;
 
 public class WidgetScriptRequest : IWidgetIdHolder
 {

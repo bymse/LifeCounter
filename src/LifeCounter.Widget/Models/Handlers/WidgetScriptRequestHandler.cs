@@ -1,14 +1,15 @@
 using System.Text.Json;
 using LifeCounter.Common.Front;
+using LifeCounter.Widget.Models.Dto;
 
-namespace LifeCounter.Widget.Models;
+namespace LifeCounter.Widget.Models.Handlers;
 
-public class WidgetJsRequestHandler
+public class WidgetScriptRequestHandler
 {
     private readonly IFrontBundleProvider frontBundleProvider;
     private readonly IConfigurationProvider configurationProvider;
 
-    public WidgetJsRequestHandler(
+    public WidgetScriptRequestHandler(
         IFrontBundleProvider frontBundleProvider,
         IConfigurationProvider configurationProvider
     )
@@ -17,11 +18,11 @@ public class WidgetJsRequestHandler
         this.configurationProvider = configurationProvider;
     }
 
-    public string GetWidgetJs(Guid widgetId)
+    public string GetWidgetJs(WidgetScriptRequest request)
     {
         var path = frontBundleProvider.GetAbsolutePath("widget", "js");
         var js = File.ReadAllText(path);
-        var configStr = JsonSerializer.Serialize(GetConfig(widgetId));
+        var configStr = JsonSerializer.Serialize(GetConfig(request.WidgetId));
         return js.Replace("@CONFIG_INJECTION@", configStr.Replace("\"", "\\\""));
     }
 

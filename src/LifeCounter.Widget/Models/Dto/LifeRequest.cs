@@ -2,7 +2,7 @@ using System.Collections.Immutable;
 using System.Text.Json.Serialization;
 using LifeCounter.Common.Validation;
 
-namespace LifeCounter.Widget.Models;
+namespace LifeCounter.Widget.Models.Dto;
 
 public class LifeRequest : IWidgetIdHolder
 {

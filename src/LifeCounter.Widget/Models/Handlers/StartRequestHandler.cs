@@ -1,6 +1,7 @@
 using LifeCounter.DataLayer.LifeStore;
+using LifeCounter.Widget.Models.Dto;
 
-namespace LifeCounter.Widget.Models;
+namespace LifeCounter.Widget.Models.Handlers;
 
 public class StartRequestHandler
 {

@@ -1,7 +1,7 @@
 using System.Collections.Immutable;
 using System.Text.Json.Serialization;
 
-namespace LifeCounter.Widget.Models;
+namespace LifeCounter.Widget.Models.Dto;
 
 public class StartRequest : IWidgetIdHolder
 {

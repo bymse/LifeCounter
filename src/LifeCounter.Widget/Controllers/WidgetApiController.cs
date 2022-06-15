@@ -1,4 +1,6 @@
 using LifeCounter.Widget.Models;
+using LifeCounter.Widget.Models.Dto;
+using LifeCounter.Widget.Models.Handlers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LifeCounter.Widget.Controllers;

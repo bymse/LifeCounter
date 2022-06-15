@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace LifeCounter.Widget.Models;
+namespace LifeCounter.Widget.Models.Dto;
 
 public class StartResponse
 {
