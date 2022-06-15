@@ -14,7 +14,7 @@ builder.Services
     .UseAutoDependencies(typeof(Program).Assembly)
     .UseUtilities("site")
     .AddDb();
-builder.Services.AddDbContext<LifeCounterDbContext>();
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddRazorPages(e =>

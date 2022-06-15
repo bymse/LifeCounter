@@ -1,7 +1,9 @@
+using LifeCounter.Common.Container;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace LifeCounter.Widget.Models.Validation;
 
+[PreventAutoRegistration]
 public class WidgetValidationFilter<T> : IActionFilter where T : IInvalidWidgetResultProvider 
 {
     private readonly WidgetRequestValidator validator;

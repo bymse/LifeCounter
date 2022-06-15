@@ -1,3 +1,4 @@
+using LifeCounter.DataLayer.Db;
 using LifeCounter.DataLayer.Db.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,6 +9,7 @@ public static class DbContainerRegisterer
     public static IServiceCollection AddDb(this IServiceCollection serviceCollection)
     {
         return serviceCollection
+                .AddDbContext<LifeCounterDbContext>()
                 .AddTransient<ILifeCounterWidgetsRepository, LifeCounterWidgetsRepository>()
             ;
     }
