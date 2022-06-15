@@ -28,7 +28,7 @@ public class WidgetEntityBinder : IModelBinder
         }
 
         var id = Guid.Parse(value);
-        bindingContext.Result = ModelBindingResult.Success(repository.FindWidget(id));
+        bindingContext.Result = ModelBindingResult.Success(repository.FindWidgetByInternalId(id));
         return Task.CompletedTask;
     }
 }

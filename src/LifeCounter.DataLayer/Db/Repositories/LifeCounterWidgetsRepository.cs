@@ -21,12 +21,20 @@ internal class LifeCounterWidgetsRepository : ILifeCounterWidgetsRepository
             .ToArray();
     }
 
-    public Widget? FindWidget(Guid id)
+    public Widget? FindWidgetByInternalId(Guid id)
     {
         return dbContext
             .Widgets
             .Include(e => e.Owner)
             .FirstOrDefault(e => e.WidgetId == id);
+    }
+    
+    public Widget? FindWidgetByPublicId(Guid id)
+    {
+        return dbContext
+            .Widgets
+            .AsNoTracking()
+            .FirstOrDefault(e => e.PublicUid == id);
     }
 
     public void SaveChanges() => dbContext.SaveChanges();

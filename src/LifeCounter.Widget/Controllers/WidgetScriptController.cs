@@ -1,6 +1,7 @@
 using LifeCounter.Widget.Models;
 using LifeCounter.Widget.Models.Dto;
 using LifeCounter.Widget.Models.Handlers;
+using LifeCounter.Widget.Models.Validation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LifeCounter.Widget.Controllers;
@@ -15,6 +16,7 @@ public class WidgetScriptController : Controller
     }
 
     [Route("/widget/script.js")]
+    [WidgetValidationFilter(typeof(InvalidWidgetScriptResultProvider))]
     public IActionResult GetWidget([FromQuery] WidgetScriptRequest request)
     {
         var js = widgetScriptRequestHandler.GetWidgetJs(request);

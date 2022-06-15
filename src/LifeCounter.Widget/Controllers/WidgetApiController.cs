@@ -1,12 +1,14 @@
 using LifeCounter.Widget.Models;
 using LifeCounter.Widget.Models.Dto;
 using LifeCounter.Widget.Models.Handlers;
+using LifeCounter.Widget.Models.Validation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LifeCounter.Widget.Controllers;
 
 [ApiController]
 [Route("/widget/api/v1")]
+[WidgetValidationFilter(typeof(InvalidWidgetApiResultProvider))]
 public class WidgetApiController : Controller
 {
     private readonly StartRequestHandler startRequestHandler;
