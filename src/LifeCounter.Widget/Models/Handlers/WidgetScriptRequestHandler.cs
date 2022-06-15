@@ -18,11 +18,16 @@ public class WidgetScriptRequestHandler
         this.configurationProvider = configurationProvider;
     }
 
-    public string GetWidgetJs(WidgetScriptRequest request)
+    public string GetWidgetJs(WidgetScriptRequest request) => GetScript("widget", request.WidgetId);
+
+    public string GetInvalidWidgetJs(IWidgetIdHolder widgetIdHolder) =>
+        GetScript("invalid-widget", widgetIdHolder.WidgetId);
+
+    private string GetScript(string script, Guid widgetId)
     {
-        var path = frontBundleProvider.GetAbsolutePath("widget", "js");
+        var path = frontBundleProvider.GetAbsolutePath(script, "js");
         var js = File.ReadAllText(path);
-        var configStr = JsonSerializer.Serialize(GetConfig(request.WidgetId));
+        var configStr = JsonSerializer.Serialize(GetConfig(widgetId));
         return js.Replace("@CONFIG_INJECTION@", configStr.Replace("\"", "\\\""));
     }
 

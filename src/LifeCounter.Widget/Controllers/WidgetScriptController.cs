@@ -20,10 +20,6 @@ public class WidgetScriptController : Controller
     public IActionResult GetWidget([FromQuery] WidgetScriptRequest request)
     {
         var js = widgetScriptRequestHandler.GetWidgetJs(request);
-        return new ContentResult
-        {
-            Content = js,
-            ContentType = "application/javascript" 
-        };
+        return new JsResult(js);
     }
 }
