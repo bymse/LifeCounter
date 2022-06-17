@@ -1,6 +1,15 @@
-.nav__btn {
+.nav__link-btn {
     padding: 0.5em 1em;
     background: var(--first-color);
     text-align: center;
     display: block;
+}
+
+.nav__btn {
+    padding: 0.5em 1em;
+    background: var(--first-color);
+    text-align: center;
+    cursor: pointer;
+    border: 0;
+    font-size: 16px;
 }
