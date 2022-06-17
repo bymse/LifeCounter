@@ -88,11 +88,12 @@ public class LifeUpdatesSubscriptionsManager : ILifeUpdatesSubscriptionsManager
         {
             if (!Groups.TryGetValue(key, out var subscription)) return;
             
-            Groups.TryRemove(key, out _);
-
             subscription.Connections.Remove(connectionId);
-            if (subscription.Connections.Count == 0) 
+            if (subscription.Connections.Count == 0)
+            {
+                Groups.TryRemove(key, out _);
                 subscription.Queue.Unsubscribe();
+            }
         }
     }
 }
