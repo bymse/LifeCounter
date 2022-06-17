@@ -6,9 +6,9 @@ namespace LifeCounter.Common.Extensions;
 
 public static class RazorPageExtensions
 {
-    public static TagBuilder Css(this RazorPage page, string name)
+    public static TagBuilder Css(this IRazorPage page, string name)
     {
-        var frontBundleProvider = page.Context.RequestServices.GetRequiredService<IFrontBundleProvider>();
+        var frontBundleProvider = page.ViewContext.HttpContext.RequestServices.GetRequiredService<IFrontBundleProvider>();
         var script = new TagBuilder("link");
         script.Attributes.Add(new("rel", "stylesheet"));
         script.Attributes.Add(new("type", "text/css"));
@@ -16,12 +16,12 @@ public static class RazorPageExtensions
         return script;
     }
     
-    public static TagBuilder Js(this RazorPage page, string name)
+    public static TagBuilder Js(this IRazorPage page, string name)
     {
-        var frontBundleProvider = page.Context.RequestServices.GetRequiredService<IFrontBundleProvider>();
+        var frontBundleProvider = page.ViewContext.HttpContext.RequestServices.GetRequiredService<IFrontBundleProvider>();
         var script = new TagBuilder("script");
         script.Attributes.Add(new("src", frontBundleProvider.GetBundleUrl(name, "js")));
-        script.Attributes.Add(new("defer", null));
+        script.Attributes.Add(new("defer", "true"));
         return script;
     }
 }

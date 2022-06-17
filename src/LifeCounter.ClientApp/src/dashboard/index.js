@@ -38,7 +38,7 @@ function handleMessage(html) {
 
 function handleEnableUpdatesChange() {
   const checkbox = document.getElementById('enable-updates');
-  checkbox.addEventListener('change', (e) => {
+  checkbox?.addEventListener('change', (e) => {
     if (e.target.checked) {
       startConnection()
         .then(() => {
