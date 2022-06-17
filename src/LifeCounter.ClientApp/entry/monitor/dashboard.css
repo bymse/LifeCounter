@@ -1,22 +1,7 @@
+@import "../../src/common/common.scss";
 @import '../../src/dashboard/table.css';
 @import '../../src/dashboard/inputs.css';
 @import '../../src/dashboard/form.css';
-
-* {
-    box-sizing: border-box;
-}
-
-:root {
-    --light-color: #F7F7F7;
-    --dark-color: #393E46;
-    --first-color: #EEEEEE;
-    --second-color: #929AAB;
-    --font-family: monospace;
-}
-
-body {
-    font-family: sans-serif;
-}
 
 .container {
     display: flex;

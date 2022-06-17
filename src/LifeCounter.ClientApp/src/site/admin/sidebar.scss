@@ -6,11 +6,5 @@
 .admin-navigation {
     display: flex;
     flex-direction: column;
-    
-    &__link {
-        color: blue;
-        &:visited {
-            color: blue;
-        }
-    }
+    gap: 1em;
 }

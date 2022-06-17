@@ -1,11 +1,7 @@
 @using Index = LifeCounter.Site.Areas.Admin.Pages.Widgets.Index
 @using LifeCounter.Site.Areas.Admin.Pages.Widgets
 
-@{
-    const string css = "admin-navigation__link";
-}
-
 <nav class="admin-navigation">
-    <a asp-page="@nameof(Index)" class="@css">Widgets list</a>
-    <a asp-page="@nameof(Item)" asp-route-widgetId="@null" class="@css">Create widget</a>
+    <a asp-page="@nameof(Index)" class="nav__btn">Widgets list</a>
+    <a asp-page="@nameof(Item)" asp-route-widgetId="@null" class="nav__btn">Create widget</a>
 </nav>

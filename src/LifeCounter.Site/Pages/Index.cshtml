@@ -1,2 +1,23 @@
 ﻿@page
 @model IndexModel
+
+<section class="public-routes">
+    <div class="public-routes__block">
+        <h2 class="public-routes__title">LifeCounter — count life users</h2>
+        <div class="public-routes__buttons-wrapper">
+            <a class="nav__btn" asp-page="@nameof(Demo)">Demo</a>
+            <a class="nav__btn" asp-page="@nameof(GetStarted)">Get started</a>
+        </div>
+    </div>
+</section>
+<section class="public-description">
+    <div class="public-description__container">
+        <p class="public-description__text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <div class="public-description__links">
+            <a class="nav__btn" href="https://github.com/bymse/LifeCounter" target="_blank" rel="noreferrer nofollow noopener">GitHub</a>
+            <a class="nav__btn" asp-page="@nameof(About)">About</a>
+        </div>
+    </div>
+</section>
