@@ -25,11 +25,11 @@ builder.Services.AddHostedService<LivesUpdatesProcessingWorker>();
 
 builder.Services
     .UseLifeStore()
-    .UseAutoDependencies(typeof(DashboardController).Assembly)
     .UseUtilities("monitor")
+    .AddSingleton<ILifeUpdatesSubscriptionsManager, LifeUpdatesSubscriptionsManager>()
     .AddSingleton<ILifeUpdatesSubscriber, LifeUpdatesSubscribeRequestsChannel>()
     .AddSingleton<ILifeUpdatesSubscribeRequestsProvider, LifeUpdatesSubscribeRequestsChannel>()
-    .AddSingleton<ILifeUpdatesSubscriptionsManager, LifeUpdatesSubscriptionsManager>()
+    .UseAutoDependencies(typeof(DashboardController).Assembly)
     ;
 
 if (builder.Environment.IsDevelopment())
