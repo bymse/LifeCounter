@@ -1,7 +1,8 @@
 import {Widget} from "./Widget";
 
-export default async function (config) {
-  const {onLoaded, props, initialize = true} = window.LifeStoreConfig || {};
+
+window.__LifeCounterWidgetRunner = async (config) => {
+  const {onLoaded, props, initialize = true} = window.LifeCounterConfig || {};
   const widget = window.LifeStoreWidget = new Widget(config, props);
 
   if (onLoaded) {

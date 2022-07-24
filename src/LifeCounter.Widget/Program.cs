@@ -1,4 +1,5 @@
 using LifeCounter.Common.Container;
+using LifeCounter.Common.Front;
 using LifeCounter.DataLayer.Container;
 using LifeCounter.Widget.Controllers;
 using LifeCounter.Widget.Hubs;
@@ -28,6 +29,8 @@ app.UseCors(e => e
     .AllowAnyHeader()
     .AllowCredentials()
 );
+
+app.UseFront();
 
 app.MapControllers();
 app.MapHub<LifeCounterHub>("/widget/hub/life-counter");

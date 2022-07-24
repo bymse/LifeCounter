@@ -1,4 +1,4 @@
 
-const {alivePeriod, widgetId, apiUrl, transportType} = JSON.parse('@CONFIG_INJECTION@');
+const {alivePeriod, widgetId, apiUrl, transportType, widgetUrl, signalrUrl} = JSON.parse('@CONFIG_INJECTION@');
 
-export const config = {alivePeriod, widgetId, apiUrl, transportType};
+export const config = {alivePeriod, widgetId, apiUrl, transportType, widgetUrl, signalrUrl};

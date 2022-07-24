@@ -1,5 +1,6 @@
 using System.Text.Json;
 using LifeCounter.Common.Front;
+using LifeCounter.DataLayer.Db.Entity;
 using LifeCounter.Widget.Models.Dto;
 
 namespace LifeCounter.Widget.Models.Handlers;
@@ -18,10 +19,10 @@ public class WidgetScriptRequestHandler
         this.configurationProvider = configurationProvider;
     }
 
-    public string GetWidgetJs(WidgetScriptRequest request) => GetScript("widget", request.WidgetId);
+    public string GetWidgetJs(WidgetScriptRequest request) => GetScript("loader", request.WidgetId);
 
     public string GetInvalidWidgetJs(IWidgetIdHolder widgetIdHolder) =>
-        GetScript("invalid-widget", widgetIdHolder.WidgetId);
+        GetScript("invalid-loader", widgetIdHolder.WidgetId);
 
     private string GetScript(string script, Guid widgetId)
     {
@@ -31,13 +32,16 @@ public class WidgetScriptRequestHandler
         return js.Replace("@CONFIG_INJECTION@", configStr.Replace("\"", "\\\""));
     }
 
-    private object GetConfig(Guid widgetId)
+    private WidgetFrontConfig GetConfig(Guid widgetId)
     {
-        return new
+        return new WidgetFrontConfig
         {
-            alivePeriod = configurationProvider.GetAlivePeriod().TotalMilliseconds,
-            widgetId,
-            apiUrl = configurationProvider.GetApiUrl()
+            AlivePeriod = configurationProvider.GetAlivePeriod().TotalMilliseconds,
+            WidgetId = widgetId,
+            ApiUrl = configurationProvider.GetBaseUrl(),
+            SignalrUrl = frontBundleProvider.GetBundleUrl("signalr", "js"),
+            WidgetUrl = frontBundleProvider.GetBundleUrl("widget", "js"),
+            TransportType = TransportType.SignalR.ToString()
         };
     }
 }

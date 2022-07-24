@@ -1,5 +1,6 @@
 import {WidgetHttpApi} from "./WidgetHttpApi";
 import {WidgetSignalrApi} from "./WidgetSignlarApi";
+import {TransportType} from "./TransportType";
 
 export class Widget {
 
@@ -17,9 +18,9 @@ export class Widget {
 
   static #getApi(transportType, apiUrl) {
     switch (transportType) {
-      case 'http':
+      case TransportType.Http:
         return new WidgetHttpApi(apiUrl);
-      case 'signalr' :
+      case TransportType.SignalR:
         return new WidgetSignalrApi(apiUrl);
       default:
         throw new Error();

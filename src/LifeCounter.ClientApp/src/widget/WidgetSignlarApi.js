@@ -12,7 +12,6 @@ export class WidgetSignalrApi {
   start(widgetId, page, properties) {
     return this.#connection.start()
       .then(() => this.#connection.invoke('Start', {widgetId, page, properties}))
-      .then(e => e.json())
       .catch(() => {});
   }
 
