@@ -20,14 +20,14 @@ export class WidgetHttpApi {
   }
 
   alive(widgetId, page, lifeId, properties) {
-    return WidgetHttpApi.#sendBeacon('alive', {widgetId, page, lifeId, properties});
+    return this.#sendBeacon('alive', {widgetId, page, lifeId, properties});
   }
 
   stop(widgetId, page, lifeId) {
-    return WidgetHttpApi.#sendBeacon('stop', {widgetId, page, lifeId});
+    return this.#sendBeacon('stop', {widgetId, page, lifeId});
   }
   
-  static #sendBeacon(action, data) {
+  #sendBeacon(action, data) {
     const body = new Blob([JSON.stringify(data)], {type: 'application/json'} );
     return navigator.sendBeacon(`${this.#baseUrl}${PREFIX}${action}`, body);
   }

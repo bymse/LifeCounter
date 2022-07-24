@@ -20,5 +20,5 @@ public class WidgetFrontConfig
     public string SignalrUrl { get; init; }
     
     [JsonPropertyName("transportType")]
-    public string TransportType { get; init; }
+    public string? TransportType { get; init; }
 }

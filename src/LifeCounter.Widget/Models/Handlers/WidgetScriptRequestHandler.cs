@@ -9,14 +9,15 @@ public class WidgetScriptRequestHandler
 {
     private readonly IFrontBundleProvider frontBundleProvider;
     private readonly IConfigurationProvider configurationProvider;
+    private readonly WidgetProvider widgetProvider;
 
     public WidgetScriptRequestHandler(
         IFrontBundleProvider frontBundleProvider,
-        IConfigurationProvider configurationProvider
-    )
+        IConfigurationProvider configurationProvider, WidgetProvider widgetProvider)
     {
         this.frontBundleProvider = frontBundleProvider;
         this.configurationProvider = configurationProvider;
+        this.widgetProvider = widgetProvider;
     }
 
     public string GetWidgetJs(WidgetScriptRequest request) => GetScript("loader", request.WidgetId);
@@ -34,6 +35,7 @@ public class WidgetScriptRequestHandler
 
     private WidgetFrontConfig GetConfig(Guid widgetId)
     {
+        var widget = widgetProvider.FindWidgetByPublicId(widgetId);
         return new WidgetFrontConfig
         {
             AlivePeriod = configurationProvider.GetAlivePeriod().TotalMilliseconds,
@@ -41,7 +43,7 @@ public class WidgetScriptRequestHandler
             ApiUrl = configurationProvider.GetBaseUrl(),
             SignalrUrl = frontBundleProvider.GetBundleUrl("signalr", "js"),
             WidgetUrl = frontBundleProvider.GetBundleUrl("widget", "js"),
-            TransportType = TransportType.SignalR.ToString()
+            TransportType = widget?.TransportType.ToString()
         };
     }
 }

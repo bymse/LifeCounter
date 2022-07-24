@@ -1,19 +1,17 @@
-using LifeCounter.DataLayer.Db.Repositories;
-
 namespace LifeCounter.Widget.Models.Validation;
 
 public class WidgetRequestValidator
 {
-    private readonly ILifeCounterWidgetsRepository repository;
+    private readonly WidgetProvider widgetProvider;
 
-    public WidgetRequestValidator(ILifeCounterWidgetsRepository repository)
+    public WidgetRequestValidator(WidgetProvider widgetProvider)
     {
-        this.repository = repository;
+        this.widgetProvider = widgetProvider;
     }
 
     public bool IsValid(IWidgetIdHolder widgetIdHolder)
     {
-        var widget = repository.FindWidgetByPublicId(widgetIdHolder.WidgetId);
+        var widget = widgetProvider.FindWidgetByPublicId(widgetIdHolder.WidgetId);
         return widget?.Enabled == true;
     }
 }

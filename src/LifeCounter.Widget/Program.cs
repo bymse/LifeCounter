@@ -15,6 +15,9 @@ builder.Services.AddSignalR()
     ;
 
 builder.Services
+    .AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+builder.Services
     .UseLifeStore()
     .AddDb()
     .UseAutoDependencies(typeof(WidgetApiController).Assembly)

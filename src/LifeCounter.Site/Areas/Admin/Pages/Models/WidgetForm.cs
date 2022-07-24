@@ -20,5 +20,6 @@ public class WidgetForm
     public bool Enabled { get; init; }
     
     [Required]
+    [Display(Name = "Transport")]
     public TransportType TransportType { get; init; }
 }
