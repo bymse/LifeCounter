@@ -22,7 +22,7 @@ public class Index : PageModel
     public void OnGet()
     {
         WidgetCards = widgetsRepository.GetWidgets(userManager.GetUserId(User))
-            .Select(e => new WidgetCardViewModel(e.Title, e.WidgetId, e.PublicUid, e.CreatedDate))
+            .Select(e => new WidgetCardViewModel(e.Title, e.WidgetId, e.PublicUid, e.CreatedDate, e.Enabled))
             .ToArray();
     }
 }

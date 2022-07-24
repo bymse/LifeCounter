@@ -1,6 +1,6 @@
 import path from 'path';
 import fs from 'fs/promises'
-import signalrPackage from '@microsoft/signalr/package.json' 
+import signalrPackage from '@microsoft/signalr/package.json' assert {type : "json"}
 
 const signalrBasePath = path.resolve('node_modules', '@microsoft', 'signalr', 'dist', 'browser');
 

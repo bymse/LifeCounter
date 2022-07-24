@@ -1,9 +1,12 @@
 @model LifeCounter.Site.Areas.Admin.Pages.Models.WidgetCardViewModel
 
-<a asp-page="@nameof(Item)" asp-route-widgetId="@Model.WidgetId" class="widget-card">
+<a 
+    asp-page="@nameof(Item)"
+    asp-route-widgetId="@Model.WidgetId"
+    class="widget-card @(Model.Enabled ? "enabled" : "")">
     <p class="widget-card__title">
         @Model.Title
     </p>
     <span class="widget-card__id">@Model.PublicId.ToString("N")</span>
-    <span class="widget-card__owner">Created: @Model.Created</span>
+    <span class="widget-card__created">@Model.Created.ToString("yyyy.MM.dd")</span>
 </a>
