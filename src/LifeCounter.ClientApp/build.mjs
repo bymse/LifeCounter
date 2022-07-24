@@ -26,6 +26,7 @@ esbuild.build({
   plugins: [sassPlugin()]
 })
   .then(() => copySignalr('monitor'))
+  .then(() => copySignalr('widget'))
   .then(() => watch && console.log('Watching...'))
   .catch((e) => {
     console.error(e);

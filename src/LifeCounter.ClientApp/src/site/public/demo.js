@@ -14,6 +14,6 @@ form.addEventListener('submit', e => {
   e.preventDefault();
   const number = document.getElementById('user-number').value;
   if (Widget) {
-    Widget.setProps({number});
+    Widget.updateProps({number});
   }
 });

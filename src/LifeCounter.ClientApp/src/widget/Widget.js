@@ -1,8 +1,9 @@
-import {WidgetApi} from "./WidgetApi";
+import {WidgetHttpApi} from "./WidgetHttpApi";
+import {WidgetSignalrApi} from "./WidgetSignlarApi";
 
 export class Widget {
 
-  constructor(widgetId, alivePeriod, baseProps) {
+  constructor({widgetId, alivePeriod, apiUrl, transportType}, baseProps) {
     this.widgetId = widgetId;
     this.props = baseProps;
     this.alivePeriod = alivePeriod;
@@ -10,12 +11,24 @@ export class Widget {
     this.isActive = false;
     this.lifeId = null;
     this.currentPage = null;
+    this.api = Widget.#getApi(transportType, apiUrl);
     this.#handleVisibilityChange = this.#handleVisibilityChange.bind(this);
+  }
+
+  static #getApi(transportType, apiUrl) {
+    switch (transportType) {
+      case 'http':
+        return new WidgetHttpApi(apiUrl);
+      case 'signalr' :
+        return new WidgetSignalrApi(apiUrl);
+      default:
+        throw new Error();
+    }
   }
 
   initialize() {
     this.currentPage = Widget.#getPage();
-    return WidgetApi
+    return this.api
       .start(this.widgetId, this.currentPage, this.props)
       .then(({lifeId}) => {
         if (lifeId) {
@@ -27,13 +40,20 @@ export class Widget {
       })
   }
 
-  setProps(props) {
+  updateProps(props) {
+    clearInterval(this.aliveInterval);
     this.props = props;
+    this.#alive();
+    this.#setAliveInterval();
   }
 
   #initializeHandlers() {
-    this.aliveInterval = setInterval(() => this.isActive && this.#alive(), this.alivePeriod);
+    this.#setAliveInterval();
     document.addEventListener('visibilitychange', this.#handleVisibilityChange);
+  }
+
+  #setAliveInterval() {
+    this.aliveInterval = setInterval(() => this.isActive && this.#alive(), this.alivePeriod);
   }
 
   #handleVisibilityChange = () => {
@@ -46,12 +66,12 @@ export class Widget {
     }
   }
 
-  #stopLife(){
-    WidgetApi.stop(this.widgetId, this.currentPage, this.lifeId);
+  #stopLife() {
+    this.api.stop(this.widgetId, this.currentPage, this.lifeId);
   }
-  
+
   #alive() {
-    WidgetApi.alive(this.widgetId, this.currentPage, this.lifeId, this.props);
+    this.api.alive(this.widgetId, this.currentPage, this.lifeId, this.props);
   }
 
   static #getPage() {

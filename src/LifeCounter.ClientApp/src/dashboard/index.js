@@ -1,4 +1,5 @@
 import appModel from "./appModel";
+import * as signalR from "@microsoft/signalr";
 
 if (!appModel) {
   throw new Error();

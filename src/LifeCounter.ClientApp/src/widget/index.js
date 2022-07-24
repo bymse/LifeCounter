@@ -1,13 +1,18 @@
-import {config} from "./config";
 import {Widget} from "./Widget";
 
-const {onLoaded, props, noInitialize = false} = window.LifeStoreConfig || {};
-const widget = window.LifeStoreWidget = new Widget(config.widgetId, config.alivePeriod, props);
+export default async function (config) {
+  const {onLoaded, props, initialize = true} = window.LifeStoreConfig || {};
+  const widget = window.LifeStoreWidget = new Widget(config, props);
 
-if (onLoaded) {
-  onLoaded(widget);
-}
+  if (onLoaded) {
+    try {
+      onLoaded(widget);
+    } catch {
 
-if (!noInitialize) {
-  widget.initialize();
+    }
+  }
+
+  if (initialize) {
+    await widget.initialize();
+  }
 }
