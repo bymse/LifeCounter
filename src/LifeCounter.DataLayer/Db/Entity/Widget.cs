@@ -15,6 +15,8 @@ public class Widget
     
     public string OwnerId { get; init; }
     
+    public TransportType TransportType { get; set; }
+    
     public bool Enabled { get; set; }
     
     [Column(TypeName = "timestamp")]

@@ -1,4 +1,5 @@
 @page "{widgetId:guid?}"
+@using LifeCounter.DataLayer.Db.Entity
 @model LifeCounter.Site.Areas.Admin.Pages.Widgets.Item
 
 <form method="post" asp-antiforgery="true" class="widget-form" asp-page-handler="">
@@ -10,12 +11,16 @@
     <label asp-for="Form.PublicId"></label>
     <input asp-for="Form.PublicId"/>
     @Html.ValidationMessageFor(e => e.Form.PublicId)
-    
+
+    <label asp-for="Form.TransportType"></label>
+    <select asp-for="Form.TransportType" asp-items="Html.GetEnumSelectList<TransportType>()"></select>
+    @Html.ValidationMessageFor(e => e.Form.TransportType)
+
     <label asp-for="Form.Enabled"></label>
     <input asp-for="Form.Enabled"/>
     @Html.ValidationMessageFor(e => e.Form.Enabled)
-    
-    @if(Model.Widget != null)
+
+    @if (Model.Widget != null)
     {
         <label>Created</label>
         <input disabled value="@Model.Widget?.CreatedDate">

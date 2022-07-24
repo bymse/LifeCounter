@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using LifeCounter.Common.Validation;
+using LifeCounter.DataLayer.Db.Entity;
 
 namespace LifeCounter.Site.Areas.Admin.Pages.Models;
 
@@ -17,4 +18,7 @@ public class WidgetForm
     [Required]
     [Display(Name = "Enabled")]
     public bool Enabled { get; init; }
+    
+    [Required]
+    public TransportType TransportType { get; init; }
 }

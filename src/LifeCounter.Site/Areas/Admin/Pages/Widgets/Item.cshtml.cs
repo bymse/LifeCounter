@@ -31,7 +31,8 @@ public class Item : PageModel
         {
             Title = Widget?.Title ?? "",
             PublicId = Widget?.PublicUid ?? Guid.NewGuid(),
-            Enabled = Widget?.Enabled ?? false
+            Enabled = Widget?.Enabled ?? false,
+            TransportType = Widget?.TransportType ?? TransportType.SignalR
         };
     }
 
@@ -51,6 +52,7 @@ public class Item : PageModel
         widget.Title = Form.Title;
         widget.PublicUid = Form.PublicId!.Value;
         widget.Enabled = Form.Enabled;
+        widget.TransportType = Form.TransportType;
 
         if (Widget == null)
         {
