@@ -1,6 +1,7 @@
 .admin-header {
     grid-column-start: span 2;
     height: 50px;
-    border-bottom: 1px solid black;
     padding: 1em;
+    border-bottom: 1px solid var(--dark-color);
+    background: var(--second-color);
 }

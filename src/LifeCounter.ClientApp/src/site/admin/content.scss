@@ -1,3 +1,7 @@
+.admin-content {
+    background: var(--first-color);
+}
+
 .admin-content .widgets-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, 300px);

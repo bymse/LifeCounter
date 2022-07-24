@@ -1,6 +1,7 @@
 .admin-sidebar {
-    border-right: 1px solid black;
+    border-right: 1px solid var(--dark-color);
     padding: 1em;
+    background: var(--light-color);
 }
 
 .admin-navigation {
