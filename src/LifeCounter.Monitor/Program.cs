@@ -49,13 +49,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-using var scope = app.Services.CreateScope();
-var frontBundleProvider = scope.ServiceProvider.GetService<IFrontBundleProvider>()!;
-app.UseStaticFiles(new StaticFileOptions()
-{
-    RequestPath = new PathString(frontBundleProvider.FrontBaseUrl),
-    FileProvider = new PhysicalFileProvider(frontBundleProvider.GetBasePath())
-});
+app.UseFront();
 
 app.UseRouting();
 

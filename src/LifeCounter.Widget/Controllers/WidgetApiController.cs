@@ -36,7 +36,7 @@ public class WidgetApiController : Controller
     }
 
     [HttpPost, Route("stop")]
-    public async Task<IActionResult> Stop(LifeRequest request)
+    public async Task<IActionResult> Stop(StopRequest request)
     {
         await stopRequestHandler.HandleAsync(request);
         return Ok();

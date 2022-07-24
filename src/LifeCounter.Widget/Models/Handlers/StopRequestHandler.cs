@@ -12,7 +12,7 @@ public class StopRequestHandler
         this.lifeStore = lifeStore;
     }
 
-    public Task HandleAsync(LifeRequest lifeRequest)
+    public Task HandleAsync(StopRequest lifeRequest)
     {
         return lifeStore.FinishLifeAsync(lifeRequest.WidgetId, lifeRequest.Page, lifeRequest.LifeId);
     }

@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddSignalR()
     .AddJsonProtocol()
-    .AddHubOptions<WidgetHub>(e => e.AddFilter<WidgetHubValidationFilter>())
+    .AddHubOptions<LifeCounterHub>(e => e.AddFilter<WidgetHubValidationFilter>())
     ;
 
 builder.Services
@@ -30,5 +30,5 @@ app.UseCors(e => e
 );
 
 app.MapControllers();
-app.MapHub<WidgetHub>("/widget/hubs/widget");
+app.MapHub<LifeCounterHub>("/widget/hub/life-counter");
 app.Run();

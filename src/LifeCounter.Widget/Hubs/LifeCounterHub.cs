@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace LifeCounter.Widget.Hubs;
 
-public class WidgetHub : Hub
+public class LifeCounterHub : Hub
 {
     private readonly IServiceProvider serviceProvider;
 
-    public WidgetHub(IServiceProvider serviceProvider)
+    public LifeCounterHub(IServiceProvider serviceProvider)
     {
         this.serviceProvider = serviceProvider;
     }
@@ -25,7 +25,7 @@ public class WidgetHub : Hub
             await service.HandleAsync(request);
     }
 
-    public async Task Stop(LifeRequest request)
+    public async Task Stop(StopRequest request)
     {
         using (GetScoped<StopRequestHandler>(out var service))
             await service.HandleAsync(request);
