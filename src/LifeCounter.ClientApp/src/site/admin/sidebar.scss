@@ -8,4 +8,16 @@
     display: flex;
     flex-direction: column;
     gap: 1em;
+    align-items: center;
+    padding-top: 4em;
+    
+    & .button {
+        position: relative;
+    }
+}
+
+.button_create-widget::after {
+    content: '+';
+    position: absolute;
+    top: -0.4em;
 }

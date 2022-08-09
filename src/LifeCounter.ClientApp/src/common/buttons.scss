@@ -1,3 +1,26 @@
+.button {
+    background: var(--second-color);
+    color: #ffffff;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    text-align: center;
+
+    &:hover {
+        box-shadow: 0 5px 15px var(--second-color);
+    }
+
+    &_nav {
+        text-decoration: underline;
+    }
+
+    &_m {
+        width: 8em;
+        height: 2.2em;
+        line-height: 2.2em;
+        border-radius: 0.3em;
+        font-size: 24px;
+    }
+}
+
 .nav__link-btn {
     padding: 0.5em 1em;
     background: var(--first-color);
