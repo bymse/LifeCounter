@@ -1,0 +1,11 @@
+
+.form-card {
+    display: grid;
+    height: 100%;
+    color: #ffffff;
+    
+    &__form-wrapper {
+        margin: auto;
+        background: var(--second-color);
+    }
+}
