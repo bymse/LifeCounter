@@ -1,18 +1,28 @@
 .widget-form {
     display: grid;
     grid-template-columns: max-content 20em auto;
-    padding: 0.2em;
+    padding: 1.2em;
     gap: 0.2em;
     align-items: center;
+    font-size: 28px;
+    border-radius: 1em;
     
     &__buttons {
         display: flex;
-        column-gap: 0.2em;
-        grid-column: 2;
-        justify-self: end;
+        column-gap: 1em;
+        grid-column: span 2;
+        justify-self: center;
+        padding-top: 0.6em;
     }
     
     & label {
-        padding: 0.2em;
+        padding: 0.2em .4em 0.2em 0.2em;
+    }
+    
+    & input, & select {
+        font-size: 0.8em;
+        border-radius: 0.4em;
+        border: 0;
+        padding: 4px 8px;
     }
 }

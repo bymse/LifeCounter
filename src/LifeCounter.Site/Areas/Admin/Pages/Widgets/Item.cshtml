@@ -23,15 +23,15 @@
         @if (Model.Widget != null)
         {
             <label>Created</label>
-            <input disabled value="@Model.Widget?.CreatedDate">
+            <input disabled value="@Model.Widget?.CreatedDate.ToString("yyyy-MM-dd hh:mm:ss")">
             <span></span>
         }
         <div class="widget-form__buttons">
-            <button type="submit" asp->Submit</button>
             @if (Model.Widget != null)
             {
-                <button asp-page-handler="delete" type="submit">Delete</button>
+                <button class="button button_m button-light" asp-page-handler="delete" type="submit">Delete</button>
             }
+            <button type="submit" class="button button_m button-light">Submit</button>
         </div>
     </form>
 </form-card>
