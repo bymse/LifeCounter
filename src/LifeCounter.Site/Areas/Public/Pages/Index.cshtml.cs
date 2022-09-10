@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace LifeCounter.Site.Pages;
+namespace LifeCounter.Site.Areas.Public.Pages;
 
 public class IndexModel : PageModel
 {

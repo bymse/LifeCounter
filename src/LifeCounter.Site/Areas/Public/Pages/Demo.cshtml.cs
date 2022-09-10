@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace LifeCounter.Site.Pages;
+namespace LifeCounter.Site.Areas.Public.Pages;
 
 public class Demo : PageModel
 {

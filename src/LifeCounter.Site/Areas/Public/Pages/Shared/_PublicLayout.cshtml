@@ -1,0 +1,18 @@
+﻿@using LifeCounter.Common.Extensions
+@{
+    Layout = "_Layout";
+}
+
+@section Styles
+{
+    @this.Css("public")
+}
+
+@section Scripts
+{
+    @await RenderSectionAsync("Scripts", required: false)
+}
+
+<main class="public-content">
+    @RenderBody()
+</main>
