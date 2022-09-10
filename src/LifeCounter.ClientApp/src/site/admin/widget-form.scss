@@ -30,7 +30,7 @@
         border: 0.1em solid var(--red-color);
         background: var(--red-color-light);
     }
-    
+
     & .field-validation-error {
         color: var(--red-color);
         font-weight: 600;
@@ -39,8 +39,35 @@
         font-size: 0.6em;
         margin-top: -0.4em;
     }
-    
-    & .field-validation-valid { 
+
+    & .field-validation-valid {
         display: none;
+    }
+}
+
+.widget-form input[type="checkbox"] {
+    appearance: none;
+    margin: 0;
+    font: inherit;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid #ffffff;
+    border-radius: 0.3em;
+    display: grid;
+    place-content: center;
+    background-color: #ffffff;
+
+    &::before {
+        content: "";
+        width: 1em;
+        height: 1em;
+    }
+    
+    &:checked::before {
+        content: "\2713";
+        margin-bottom: 0.4em;
+        margin-left: 0.2em;
+        font-weight: bolder;
+        font-size: 1.1em;
     }
 }
