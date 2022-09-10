@@ -1,0 +1,24 @@
+﻿@using LifeCounter.Common.Extensions
+@{
+    Layout = "_Layout";
+}
+
+@section Styles
+{
+    @this.Css("admin")
+}
+
+@section Scripts
+{
+    @this.Js("admin")
+}
+
+<div class="admin-layout">
+    <aside class="admin-sidebar">
+        <partial name="Sidebar"/>
+    </aside>
+
+    <main class="admin-content">
+        @RenderBody()
+    </main>
+</div>

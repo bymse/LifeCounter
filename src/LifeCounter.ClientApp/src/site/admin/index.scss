@@ -1,18 +1,9 @@
-@import "../../common/common.scss";
-
-body {
-    font-family: 'Raleway', sans-serif;
-}
-
 .admin-layout {
     display: grid;
     grid-template-columns: 1fr 6fr;
-    grid-template-rows: auto 1fr auto;
     min-height: 100%;
 }
 
 @import "content";
-@import "header";
-@import "footer";
 @import "sidebar";
 @import "widget-form";

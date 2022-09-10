@@ -1,16 +1,12 @@
-﻿@using Microsoft.AspNetCore.Identity
-@using Index = LifeCounter.Site.Areas.Admin.Pages.Widgets.Index
-@inject SignInManager<IdentityUser> SignInManager
+﻿@inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
 <nav class="public-navbar">
     @if (SignInManager.IsSignedIn(User))
     {
-        <a class="nav__link-btn" asp-area="Admin" asp-page="@nameof(Index)" title="Manage">Admin</a>
-        <a class="nav__link-btn" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Account</a>
-        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-            <button type="submit" class="nav__btn">Logout</button>
-        </form>
+        <div class="site-header__user">
+            @User.Identity.Name
+        </div>
     }
     else
     {

@@ -1,24 +1,26 @@
 ﻿@using LifeCounter.Common.Extensions
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>LifeCounter.Site</title>
-    @this.Css("public")
+    @this.Css("layout")
+    @await RenderSectionAsync("Styles", required: false)
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
 </head>
-<body class="public-layout">
-
-<header class="public-header">
-<partial name="_LoginPartial"/>
+<body class="site-layout">
+<header class="site-header">
+    <partial name="_HeaderPartial"/>
 </header>
 
-<main class="public-content">
+<main class="circuit">
     @RenderBody()
-</main>  
+</main>
 
-<footer class="public-footer">
-
+<footer class="site-footer">
+    <partial name="_FooterPartial"/>
 </footer>
 
 @await RenderSectionAsync("Scripts", required: false)

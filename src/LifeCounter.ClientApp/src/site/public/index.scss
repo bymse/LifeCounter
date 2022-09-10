@@ -1,25 +1,2 @@
-
-.public-layout {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.public-header {
-    
-}
-
-.public-navbar {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.5em;
-    padding: 0.5em 1em;
-}
-
-.public-footer {
-    
-}
-
-@import "../../common/common.scss";
 @import "content";
 @import "demo";

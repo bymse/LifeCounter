@@ -1,5 +1,4 @@
-.admin-header {
-    grid-column-start: span 2;
+.site-header {
     height: 3em;
     border-bottom: 1px solid var(--dark-color);
     background: var(--dark-color);
@@ -23,7 +22,7 @@
     }
 }
 
-.admin-header__logo {
+.site-header__logo {
     font-size: 32px;
     color: #ffffff;
     text-decoration: none;
