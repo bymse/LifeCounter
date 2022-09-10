@@ -1,12 +1,12 @@
 .widget-form {
     display: grid;
-    grid-template-columns: max-content 20em auto;
+    grid-template-columns: max-content 20em;
     padding: 1.2em;
     gap: 0.2em;
     align-items: center;
     font-size: 28px;
     border-radius: 1em;
-    
+
     &__buttons {
         display: flex;
         column-gap: 1em;
@@ -14,15 +14,33 @@
         justify-self: center;
         padding-top: 0.6em;
     }
-    
+
     & label {
         padding: 0.2em .4em 0.2em 0.2em;
     }
-    
+
     & input, & select {
         font-size: 0.8em;
         border-radius: 0.4em;
         border: 0;
         padding: 4px 8px;
+    }
+
+    & input.input-validation-error {
+        border: 0.1em solid var(--red-color);
+        background: var(--red-color-light);
+    }
+    
+    & .field-validation-error {
+        color: var(--red-color);
+        font-weight: 600;
+        grid-column: span 2;
+        justify-self: end;
+        font-size: 0.6em;
+        margin-top: -0.4em;
+    }
+    
+    & .field-validation-valid { 
+        display: none;
     }
 }
