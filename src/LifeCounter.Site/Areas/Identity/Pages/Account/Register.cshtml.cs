@@ -10,20 +10,20 @@ using Microsoft.AspNetCore.WebUtilities;
 
 namespace LifeCounter.Site.Areas.Identity.Pages.Account
 {
-    public class RegisterModel : PageModel
+    public class Register : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IUserStore<IdentityUser> _userStore;
         private readonly IUserEmailStore<IdentityUser> _emailStore;
-        private readonly ILogger<RegisterModel> _logger;
+        private readonly ILogger<Register> _logger;
         private readonly IEmailSender _emailSender;
 
-        public RegisterModel(
+        public Register(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
-            ILogger<RegisterModel> logger,
+            ILogger<Register> logger,
             IEmailSender emailSender)
         {
             _userManager = userManager;

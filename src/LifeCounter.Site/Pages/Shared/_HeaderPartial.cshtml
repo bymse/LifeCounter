@@ -1,4 +1,7 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
+@using LifeCounter.Site.Extensions
+@using Index = LifeCounter.Site.Areas.Admin.Pages.Index
+@inject SignInManager<IdentityUser> SignInManager
 
 <div>
     <a class="site-header__logo" href="/">
@@ -6,7 +9,10 @@
     </a>
 </div>
 
-<div class="site-header__right">
+<nav class="site-header__right">
+    @if (!Context.IsInArea(nameof(Areas.Admin)) && SignInManager.IsSignedIn(User))
+    {
+        <a class="nav__link" asp-area="Admin" asp-page="@nameof(Index)">admin</a>
+    }
     <partial name="_LoginPartial"/>
-</div>
-
+</nav>

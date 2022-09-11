@@ -1,16 +1,15 @@
-﻿@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+﻿@using LifeCounter.Site.Areas.Identity.Pages.Account
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@inject SignInManager<IdentityUser> SignInManager
 
-<nav class="public-navbar">
-    @if (SignInManager.IsSignedIn(User))
-    {
-        <div class="site-header__user">
-            @User.Identity.Name
-        </div>
-    }
-    else
-    {
-        <a class="nav__link-btn" asp-area="Identity" asp-page="/Account/Register">Register</a>
-        <a class="nav__link-btn" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    }
-</nav>
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="site-header__user">
+        @User.Identity.Name
+    </div>
+}
+else
+{
+    <a class="nav__link" asp-area="Identity" asp-page="@nameof(Register)">register</a>
+    <a class="nav__link" asp-area="Identity" asp-page="/Account/Login">log in</a>
+}
