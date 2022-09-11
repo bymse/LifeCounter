@@ -4,9 +4,12 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <div class="site-header__user">
+    <a class="tooltip nav__link" asp-area="Identity" asp-page="/Account/Logout">
         @User.Identity.Name
-    </div>
+        <div class="tooltip-text">
+            Log out
+        </div>
+    </a>
 }
 else
 {
