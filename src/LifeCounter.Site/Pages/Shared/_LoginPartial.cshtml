@@ -1,5 +1,4 @@
-﻿@using LifeCounter.Site.Areas.Identity.Pages.Account
-@using Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
 @inject SignInManager<IdentityUser> SignInManager
 
 @if (SignInManager.IsSignedIn(User))
@@ -13,6 +12,6 @@
 }
 else
 {
-    <a class="nav__link" asp-area="Identity" asp-page="@nameof(Register)">register</a>
+    <a class="nav__link" asp-area="Identity" asp-page="/Account/Register">register</a>
     <a class="nav__link" asp-area="Identity" asp-page="/Account/Login">log in</a>
 }
