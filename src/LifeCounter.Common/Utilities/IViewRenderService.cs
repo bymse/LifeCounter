@@ -1,4 +1,4 @@
-namespace LifeCounter.Monitor.Models
+namespace LifeCounter.Common.Utilities
 {
     public interface IViewRenderService
     {

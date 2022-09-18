@@ -25,6 +25,6 @@ public class UserAuthLinkSender
             Url = authLinkProvider.GetLoginLink(user, token, returnUrl)
         };
         
-        return await emailSender.SendAsync(user.Email, "Log in", "", viewModel);
+        return await emailSender.SendAsync(user.Email, "Log in", "AuthLink", viewModel);
     }
 }

@@ -1,3 +1,4 @@
+using LifeCounter.Common.Utilities;
 using LifeCounter.Monitor.Hubs;
 using LifeCounter.Monitor.Models.Dashboard;
 using Microsoft.AspNetCore.SignalR;

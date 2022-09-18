@@ -28,6 +28,7 @@ builder.Services
     .AddSingleton<IActionContextAccessor, ActionContextAccessor>()
     ;
 
+builder.Services.AddMvc();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddRazorPages(e =>

@@ -10,6 +10,7 @@ public static class UtilitiesRegisterer
     {
         serviceCollection.AddSingleton<ICurrentAppSectionProvider>(_ => new CurrentAppSectionProvider(section));
         serviceCollection.AddSingleton<IFrontBundleProvider, FrontBundleProvider>();
+        serviceCollection.AddTransient<IViewRenderService, ViewRenderService>();
         return serviceCollection;
     }
 }

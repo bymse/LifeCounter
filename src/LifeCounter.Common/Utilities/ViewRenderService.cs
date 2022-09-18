@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
-namespace LifeCounter.Monitor.Models
+namespace LifeCounter.Common.Utilities
 {
     public class ViewRenderService : IViewRenderService
     {
