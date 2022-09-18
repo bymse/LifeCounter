@@ -7,3 +7,4 @@ node_modules/
 */.idea/*
 build
 */WebApp1/*
+appsettings.secret.json
