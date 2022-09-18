@@ -7,5 +7,7 @@ public class EmailAuthLinkRequestForm
     [Required]
     [EmailAddress]
     [Display(Name = "Email")]
-    public string Email { get; set; }
+    public string? Email { get; set; }
+    
+    public string? ReturnUrl { get; set; }
 }

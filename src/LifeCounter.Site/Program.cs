@@ -2,18 +2,26 @@ using LifeCounter.Common.Container;
 using LifeCounter.Common.Front;
 using LifeCounter.DataLayer.Container;
 using LifeCounter.DataLayer.Db;
+using LifeCounter.Site.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
     .AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<LifeCounterDbContext>();
+    .AddEntityFrameworkStores<LifeCounterDbContext>()
+    .AddDefaultTokenProviders()
+    ;
+builder.Services
+    .Configure<DataProtectionTokenProviderOptions>(e => e.TokenLifespan = TimeSpan.FromMinutes(30));
 
 builder.Services
     .UseAutoDependencies(typeof(Program).Assembly)
     .UseUtilities("site")
-    .AddDb();
+    .AddDb()
+    .AddSingleton<IActionContextAccessor, ActionContextAccessor>()
+    ;
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

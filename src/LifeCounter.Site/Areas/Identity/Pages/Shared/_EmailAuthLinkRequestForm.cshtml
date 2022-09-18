@@ -5,6 +5,7 @@
         <h2 class="auth-link-form__title">@Model.Title</h2>
         <input asp-for="Form.Email" placeholder="Email" class="auth-link-form__email"/>
         @Html.ValidationMessageFor(e => e.Form.Email)
+        @Html.HiddenFor(e => e.Form.ReturnUrl)
         <div class="auth-link-form__buttons">
             <button class="button button_m button-light" type="submit">Send</button>
         </div>

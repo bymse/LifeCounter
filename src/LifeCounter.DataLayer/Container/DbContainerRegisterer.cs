@@ -11,6 +11,7 @@ public static class DbContainerRegisterer
         return serviceCollection
                 .AddDbContext<LifeCounterDbContext>()
                 .AddTransient<ILifeCounterWidgetsRepository, LifeCounterWidgetsRepository>()
+                .AddTransient<IIdentityUserRepository, IdentityUserRepository>()
             ;
     }
 }
