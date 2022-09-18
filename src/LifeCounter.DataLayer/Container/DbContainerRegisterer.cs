@@ -6,7 +6,7 @@ namespace LifeCounter.DataLayer.Container;
 
 public static class DbContainerRegisterer
 {
-    public static IServiceCollection AddDb(this IServiceCollection serviceCollection)
+    public static IServiceCollection UseDb(this IServiceCollection serviceCollection)
     {
         return serviceCollection
                 .AddDbContext<LifeCounterDbContext>()

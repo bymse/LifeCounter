@@ -19,7 +19,7 @@ builder.Services
 
 builder.Services
     .UseLifeStore()
-    .AddDb()
+    .UseDb()
     .UseAutoDependencies(typeof(WidgetApiController).Assembly)
     .UseUtilities("widget")
     ;

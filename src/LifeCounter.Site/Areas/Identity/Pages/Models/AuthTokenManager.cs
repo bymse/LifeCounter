@@ -1,3 +1,4 @@
+using LifeCounter.Site.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace LifeCounter.Site.Areas.Identity.Pages.Models;
@@ -15,11 +16,11 @@ public class AuthTokenManager
 
     public async Task<string> GetLoginTokenAsync(IdentityUser user)
     {
-        return await userManager.GenerateUserTokenAsync(user, TokenOptions.DefaultProvider, LOGIN_PURPOSE);
+        return await userManager.GenerateUserTokenAsync(user, Constants.AUTH_TOKEN_PROVIDER, LOGIN_PURPOSE);
     }
 
     public async Task<bool> IsValidLoginTokenAsync(IdentityUser user, string token)
     {
-        return await userManager.VerifyUserTokenAsync(user, TokenOptions.DefaultProvider, LOGIN_PURPOSE, token);
+        return await userManager.VerifyUserTokenAsync(user, Constants.AUTH_TOKEN_PROVIDER, LOGIN_PURPOSE, token);
     }
 }
