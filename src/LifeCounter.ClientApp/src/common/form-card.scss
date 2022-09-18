@@ -23,4 +23,18 @@
         background: var(--light-color);
         color: var(--second-color);
     }
+
+    & .field-validation-valid { 
+        display: none;
+    }
+
+    & input.input-validation-error {
+        border: 0.1em solid var(--red-color);
+        background: var(--red-color-light);
+    }
+
+    & .field-validation-error {
+        color: var(--red-color);
+        font-weight: 600;
+    }
 }

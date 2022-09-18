@@ -27,22 +27,11 @@
         color: var(--dark-color);
     }
 
-    & input.input-validation-error {
-        border: 0.1em solid var(--red-color);
-        background: var(--red-color-light);
-    }
-
     & .field-validation-error {
-        color: var(--red-color);
-        font-weight: 600;
         grid-column: span 2;
         justify-self: end;
         font-size: 0.6em;
         margin-top: -0.4em;
-    }
-
-    & .field-validation-valid {
-        display: none;
     }
 }
 

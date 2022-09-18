@@ -1,0 +1,18 @@
+@using LifeCounter.Common.Extensions
+@{
+    Layout = "_GeneralLayout";
+}
+
+@section Styles
+{
+    @this.Css("identity")
+}
+
+@section Scripts
+{
+    @await RenderSectionAsync("Scripts", required: false)
+}
+
+<main class="identity-content">
+    @RenderBody()
+</main>

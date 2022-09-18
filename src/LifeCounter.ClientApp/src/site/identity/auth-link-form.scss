@@ -1,0 +1,50 @@
+.auth-link-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    padding: 1.4em 2em;
+
+    &__title {
+        padding: 0;
+        margin: 0;
+        font-weight: normal;
+        font-size: 32px;
+    }
+    
+    &__hint {
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        font-size: 1em;
+    }
+    
+    &__buttons {
+        
+    }
+    
+    &__email {
+        padding: .6em;
+        border: 0;
+        font-size: 1.4em;
+        border-radius: 0.4em;
+        width: 100%;
+    }
+    
+    &__email::placeholder {
+        color: var(--second-color);
+        font-weight: lighter;
+    }
+    
+    &::before {
+        content: var(--logo-content-l);
+        margin-bottom: -8px;
+    }
+
+    & .field-validation-error {
+        grid-column: span 2;
+        align-self: end;
+        font-size: 0.8em;
+        margin-top: -0.8em;
+    }
+}
