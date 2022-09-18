@@ -48,3 +48,11 @@
         margin-top: -0.8em;
     }
 }
+
+.auth-link-form__hint a {
+    color: currentColor;
+    
+    :visited {
+        color: currentColor;
+    }
+}
