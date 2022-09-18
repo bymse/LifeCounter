@@ -14,4 +14,9 @@
 
 <partial
     name="_EmailAuthLinkRequestForm"
-    model="@(new EmailAuthLinkRequestFormViewModel { Form = Model.Form, Title = "Login", HintText = hintText })"/>
+    model="@(new EmailAuthLinkRequestFormViewModel {
+               Form = Model.Form!,
+               Title = "Login",
+               HintText = hintText,
+               SendResult = Model.SendResult
+           })"/>

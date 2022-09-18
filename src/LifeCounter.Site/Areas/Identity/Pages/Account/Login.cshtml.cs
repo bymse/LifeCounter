@@ -1,5 +1,6 @@
 using LifeCounter.DataLayer.Db.Repositories;
 using LifeCounter.Site.Areas.Identity.Pages.Models;
+using LifeCounter.Site.Models.Email;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -15,6 +16,8 @@ public class Login : PageModel
         this.userRepository = userRepository;
         authLinkSender = userAuthLinkSender;
     }
+    
+    public EmailSendResult? SendResult { get; set; }
     
     [BindProperty(SupportsGet = true)] public EmailAuthLinkRequestForm? Form { get; set; }
 
@@ -37,7 +40,7 @@ public class Login : PageModel
         var user = userRepository.FinderUser(Form!.Email);
         if (user != null)
         {
-            var result = await authLinkSender.SendLoginAsync(user, Form!.ReturnUrl ?? "/");
+            SendResult = await authLinkSender.SendLoginAsync(user, Form!.ReturnUrl ?? "/");
         }
 
         return Page();

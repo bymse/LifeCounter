@@ -1,16 +1,34 @@
+@using LifeCounter.Site.Models.Email
 @model LifeCounter.Site.Areas.Identity.Pages.Models.EmailAuthLinkRequestFormViewModel
 
 <form-card>
     <form method="post" asp-antiforgery="true" class="auth-link-form">
         <h2 class="auth-link-form__title">@Model.Title</h2>
-        <input asp-for="Form.Email" placeholder="Email" class="auth-link-form__email"/>
+        <input asp-for="Form.Email" placeholder="Email" class="auth-link-form__email" disabled="@Model.SendResult.HasValue"/>
         @Html.ValidationMessageFor(e => e.Form.Email)
         @Html.HiddenFor(e => e.Form.ReturnUrl)
-        <div class="auth-link-form__buttons">
-            <button class="button button_m button-light" type="submit">Send</button>
-        </div>
+        @if (Model.SendResult.HasValue)
+        {
+            <span class="auth-link-form__result @(Model.SendResult == EmailSendResult.Error ? "auth-link-form__result-error" : "")">
+                @GetResultText(Model.SendResult.Value)
+            </span>
+        }
+        else
+        {
+            <div class="auth-link-form__buttons">
+                <button class="button button_m button-light" type="submit">Send</button>
+            </div>
+        }
         <p class="auth-link-form__hint">
             @Model.HintText(null)
         </p>
     </form>
 </form-card>
+
+@functions
+{
+    private static string GetResultText(EmailSendResult result) => result switch {
+        EmailSendResult.Error => "There was an error sending the link. Please, try again later",
+        EmailSendResult.Ok => "The link was sent",
+        _ => throw new ArgumentOutOfRangeException(nameof(result), result, null)};
+}

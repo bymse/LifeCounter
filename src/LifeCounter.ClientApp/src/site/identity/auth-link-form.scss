@@ -11,18 +11,18 @@
         font-weight: normal;
         font-size: 32px;
     }
-    
+
     &__hint {
         padding: 0;
         margin: 0;
         text-align: center;
         font-size: 1em;
     }
-    
+
     &__buttons {
-        
+
     }
-    
+
     &__email {
         padding: .6em;
         border: 0;
@@ -30,12 +30,12 @@
         border-radius: 0.4em;
         width: 100%;
     }
-    
+
     &__email::placeholder {
         color: var(--second-color);
         font-weight: lighter;
     }
-    
+
     &::before {
         content: var(--logo-content-l);
         margin-bottom: -8px;
@@ -51,8 +51,16 @@
 
 .auth-link-form__hint a {
     color: currentColor;
-    
+
     :visited {
         color: currentColor;
+    }
+}
+
+.auth-link-form__result {
+    font-style: italic;
+    
+    &-error {
+        color: var(--red-color);
     }
 }
