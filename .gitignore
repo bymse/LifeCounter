@@ -6,3 +6,4 @@ riderModule.iml
 node_modules/
 */.idea/*
 build
+*/WebApp1/*
