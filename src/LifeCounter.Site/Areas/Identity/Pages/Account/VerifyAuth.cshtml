@@ -1,2 +1,8 @@
 @page
 @model LifeCounter.Site.Areas.Identity.Pages.Account.VerifyAuth
+
+<form-card>
+    <div class="invalid-auth-link-container">
+        @Html.ValidationSummary(false)
+    </div>
+</form-card>

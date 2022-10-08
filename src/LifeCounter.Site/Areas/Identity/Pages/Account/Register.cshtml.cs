@@ -10,19 +10,27 @@ namespace LifeCounter.Site.Areas.Identity.Pages.Account
     {
         private readonly AuthLinkEmailSender authLinkEmailSender;
         private readonly UserManager<IdentityUser> userManager;
+        private readonly SignInManager<IdentityUser> signInManager;
 
-        public Register(UserManager<IdentityUser> userManager, AuthLinkEmailSender authLinkEmailSender)
+        public Register(UserManager<IdentityUser> userManager, AuthLinkEmailSender authLinkEmailSender, SignInManager<IdentityUser> signInManager)
         {
             this.userManager = userManager;
             this.authLinkEmailSender = authLinkEmailSender;
+            this.signInManager = signInManager;
         }
 
         [BindProperty] public EmailAuthLinkRequestForm Form { get; set; } = null!;
         public EmailSendResult? SendResult { get; set; }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            if (signInManager.IsSignedIn(User))
+            {
+                return Redirect("/");
+            }
+            
             Form = new EmailAuthLinkRequestForm();
+            return Page();
         }
 
         public async Task<IActionResult> OnPost()
