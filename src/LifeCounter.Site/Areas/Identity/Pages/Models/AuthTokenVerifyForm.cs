@@ -9,5 +9,5 @@ public class AuthTokenVerifyForm
     
     public string Token { get; init; }
     
-    public string ReturnUrl { get; init; }
+    public string? ReturnUrl { get; init; }
 }
