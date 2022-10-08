@@ -2,20 +2,6 @@
 @using LifeCounter.Common.Extensions
 @model Demo
 
-<div class="demo">
-    <div class="demo__user-number-wrapper">
-        <form id="number-form">
-            <label for="user-number">Enter your number</label>
-            <input required type="number" id="user-number"/>
-            <button>Enter</button>
-        </form>
-    </div>
-    <div class="demo-monitor">
-        <p>Active users on current page</p>
-        <iframe data-monitor-src="/monitor/dashboard/@Model.DemoWidgetId?page=@Url.Page(nameof(Demo))&ShowForm=false"></iframe>
-    </div>
-</div>
-
 @section Scripts
 {
     @this.Js("demo")
@@ -31,3 +17,18 @@
         }
     </script>
 }
+
+@section Styles {
+    @this.Css("demo")
+}
+
+<div class="demo-wrapper">
+    <div class="demo">
+        <div class="demo__number-container">
+            <input required type="number" id="user-number" placeholder="Enter your number"/>
+        </div>
+        <div class="demo__monitor">
+            <iframe data-monitor-src="/monitor/dashboard/@Model.DemoWidgetId?page=@Url.Page(nameof(Demo))&ShowForm=false"></iframe>
+        </div>
+    </div>
+</div>

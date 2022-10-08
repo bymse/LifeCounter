@@ -6,6 +6,7 @@
 @section Styles
 {
     @this.Css("public")
+    @await RenderSectionAsync("Styles", required: false)
 }
 
 @section Scripts
