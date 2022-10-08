@@ -12,7 +12,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("appsettings.secret.json");
 
 builder.Services
-    .AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddDefaultIdentity<IdentityUser>(options =>
+    {
+        options.SignIn.RequireConfirmedAccount = true;
+        options.User.RequireUniqueEmail = true;
+    })
     .AddEntityFrameworkStores<LifeCounterDbContext>()
     .AddTokenProvider<SingleValidateTokenProvider<IdentityUser>>(Constants.AUTH_TOKEN_PROVIDER)
     ;

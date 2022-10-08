@@ -4,20 +4,25 @@
 <form-card>
     <form method="post" asp-antiforgery="true" class="auth-link-form">
         <h2 class="auth-link-form__title">@Model.Title</h2>
-        <input asp-for="Form.Email" placeholder="Email" class="auth-link-form__email" disabled="@Model.SendResult.HasValue"/>
+        <input asp-for="Form.Email" placeholder="Email" class="auth-link-form__email" disabled="@(Model.SendResult == EmailSendResult.Ok)"/>
         @Html.ValidationMessageFor(e => e.Form.Email)
         @Html.HiddenFor(e => e.Form.ReturnUrl)
-        @if (Model.SendResult.HasValue)
+        @switch (Model.SendResult)
         {
-            <span class="auth-link-form__result @(Model.SendResult == EmailSendResult.Error ? "auth-link-form__result-error" : "")">
-                @GetResultText(Model.SendResult.Value)
-            </span>
-        }
-        else
-        {
-            <div class="auth-link-form__buttons">
-                <button class="button button_m button-light" type="submit">Send</button>
-            </div>
+            case EmailSendResult.Ok:
+                <span class="auth-link-form__result">
+                    The link was sent
+                </span>
+                break;
+            case EmailSendResult.Error:
+                <span class="auth-link-form__result auth-link-form__result-error">
+                    There was an error sending the link. Please, try again later
+                </span>
+                SubmitButton();
+                break;
+            default:
+                SubmitButton();
+                break;
         }
         <p class="auth-link-form__hint">
             @Model.HintText(null)
@@ -27,8 +32,11 @@
 
 @functions
 {
-    private static string GetResultText(EmailSendResult result) => result switch {
-        EmailSendResult.Error => "There was an error sending the link. Please, try again later",
-        EmailSendResult.Ok => "The link was sent",
-        _ => throw new ArgumentOutOfRangeException(nameof(result), result, null)};
+    void SubmitButton()
+    {
+        <div class="auth-link-form__buttons">
+            <button class="button button_m button-light" type="submit">Send</button>
+        </div>
+    }
+
 }
