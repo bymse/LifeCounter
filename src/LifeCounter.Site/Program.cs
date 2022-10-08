@@ -1,5 +1,6 @@
 using LifeCounter.Common.Container;
 using LifeCounter.Common.Front;
+using LifeCounter.Common.Utilities;
 using LifeCounter.DataLayer.Container;
 using LifeCounter.DataLayer.Db;
 using LifeCounter.Site.Extensions;
@@ -30,6 +31,7 @@ builder.Services
     .UseDb()
     .UseTempStorage()
     .AddSingleton<IActionContextAccessor, ActionContextAccessor>()
+    .AddTransient<IViewRenderService, ViewRenderService>()
     ;
 
 builder.Services.AddMvc();

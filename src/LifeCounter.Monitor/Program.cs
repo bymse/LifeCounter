@@ -1,5 +1,6 @@
 using LifeCounter.Common.Container;
 using LifeCounter.Common.Front;
+using LifeCounter.Common.Utilities;
 using LifeCounter.DataLayer.Container;
 using LifeCounter.Monitor.Background;
 using LifeCounter.Monitor.Controllers;
@@ -26,6 +27,7 @@ builder.Services.AddHostedService<LivesUpdatesProcessingWorker>();
 builder.Services
     .UseLifeStore()
     .UseUtilities("monitor")
+    .AddTransient<IViewRenderService, ViewRenderService>()
     .AddSingleton<ILifeUpdatesSubscriptionsManager, LifeUpdatesSubscriptionsManager>()
     .AddSingleton<ILifeUpdatesSubscriber, LifeUpdatesSubscribeRequestsChannel>()
     .AddSingleton<ILifeUpdatesSubscribeRequestsProvider, LifeUpdatesSubscribeRequestsChannel>()
