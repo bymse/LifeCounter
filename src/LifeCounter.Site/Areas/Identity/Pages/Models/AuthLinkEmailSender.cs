@@ -21,6 +21,7 @@ public class AuthLinkEmailSender
         {
             Url = authLinkProvider.GetRegistrationLink(user, token),
         };
+        Console.WriteLine(viewModel.Url);
         return await emailSender
             .SendAsync(user.Email, "LifeCounter. Confirm registration", "RegistrationLink", viewModel);
     }

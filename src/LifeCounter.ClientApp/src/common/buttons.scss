@@ -5,6 +5,7 @@
     text-align: center;
     border: 0;
     cursor: pointer;
+    display: block;
 
     &:hover {
         box-shadow: 0 4px 10px var(--second-color);

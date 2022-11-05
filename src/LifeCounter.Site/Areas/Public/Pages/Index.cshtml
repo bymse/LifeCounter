@@ -3,23 +3,26 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @model IndexModel
 
-<section class="public-routes">
-    <div class="public-routes__block">
-        <h2 class="public-routes__title">LifeCounter — count life users</h2>
-        <div class="public-routes__buttons-wrapper">
-            <a class="nav__link-btn" asp-page="@nameof(Demo)">Demo</a>
-            <a class="nav__link-btn" asp-page="@nameof(GetStarted)">Get started</a>
+<section class="index-layout">
+    <form-card>
+        <div class="index-card">
+            <h2 class="index-card__title">LifeCounter — count life users</h2>
+            <div class="index-card__buttons-wrapper">
+                <a class="button button-light button_m button_nav" asp-page="@nameof(Demo)">Demo</a>
+                <a class="button button-light button_m button_nav" asp-page="@nameof(GetStarted)">Get started</a>
+            </div>
         </div>
-    </div>
-</section>
-<section class="public-description">
-    <div class="public-description__container">
-        <p class="public-description__text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-        <div class="public-description__links">
-            <a class="nav__link-btn" href="https://github.com/bymse/LifeCounter" target="_blank" rel="noreferrer nofollow noopener">GitHub</a>
-            <a class="nav__link-btn" asp-page="@nameof(About)">About</a>
+    </form-card>
+
+    <section class="index-description-wrapper">
+        <div class="index-description">
+            <p class="index-description__text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <div class="index-description__links">
+                <a class="button button_m button_nav" href="https://github.com/bymse/LifeCounter" target="_blank" rel="noreferrer nofollow noopener">GitHub</a>
+                <a class="button button_m button_nav" asp-page="@nameof(About)">About</a>
+            </div>
         </div>
-    </div>
+    </section>
 </section>
