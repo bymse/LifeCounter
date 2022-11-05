@@ -9,11 +9,14 @@ window.addEventListener('DOMContentLoaded', () => {
   iframe.src = iframe.getAttribute(attribute);
 });
 
-const form = document.getElementById('number-form');
-form.addEventListener('submit', e => {
-  e.preventDefault();
-  const number = document.getElementById('user-number').value;
-  if (Widget) {
-    Widget.updateProps({number});
-  }
+let timeout = null;
+const input = document.getElementById('number-input');
+input.addEventListener('input', _ => {
+  clearTimeout(timeout);
+  timeout = setTimeout(() => {
+    const number = input.value;
+    if (Widget) {
+      Widget.updateProps({number});
+    }
+  }, 200);
 });
