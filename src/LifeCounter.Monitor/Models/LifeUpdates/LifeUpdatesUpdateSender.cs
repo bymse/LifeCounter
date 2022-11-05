@@ -9,14 +9,14 @@ public class LifeUpdatesUpdateSender : ILifeUpdatesUpdateSender
 {
     private readonly ILogger<LifeUpdatesUpdateSender> logger;
     private readonly IHubContext<LifeUpdatesHub> hubContext;
-    private readonly DashboardRowsViewModelBuilder rowsViewModelBuilder;
+    private readonly AliveTableViewModelBuilder rowsViewModelBuilder;
     private readonly IViewRenderService viewRenderService;
 
     public LifeUpdatesUpdateSender(
         ILogger<LifeUpdatesUpdateSender> logger,
         IHubContext<LifeUpdatesHub> hubContext,
         IViewRenderService viewRenderService,
-        DashboardRowsViewModelBuilder rowsViewModelBuilder
+        AliveTableViewModelBuilder rowsViewModelBuilder
     )
     {
         this.logger = logger;

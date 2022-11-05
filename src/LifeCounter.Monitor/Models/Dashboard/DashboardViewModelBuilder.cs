@@ -2,18 +2,18 @@ namespace LifeCounter.Monitor.Models.Dashboard;
 
 public class DashboardViewModelBuilder
 {
-    private readonly DashboardRowsViewModelBuilder rowsViewModelBuilder;
+    private readonly AliveTableViewModelBuilder aliveTableViewModelBuilder;
 
-    public DashboardViewModelBuilder(DashboardRowsViewModelBuilder rowsViewModelBuilder)
+    public DashboardViewModelBuilder(AliveTableViewModelBuilder aliveTableViewModelBuilder)
     {
-        this.rowsViewModelBuilder = rowsViewModelBuilder;
+        this.aliveTableViewModelBuilder = aliveTableViewModelBuilder;
     }
 
     public async Task<DashboardIndexViewModel> BuildAsync(DashboardForm form)
     {
         var (widgetId, page, _) = form;
-        var rows = await rowsViewModelBuilder.BuildAsync(form.WidgetId, form.Page);
+        var tableViewModel = await aliveTableViewModelBuilder.BuildAsync(form.WidgetId, form.Page);
         var appModel = new DashboardAppModel(widgetId.ToString(), page);
-        return new DashboardIndexViewModel(appModel, rows, form);
+        return new DashboardIndexViewModel(appModel, form, tableViewModel);
     }
 }

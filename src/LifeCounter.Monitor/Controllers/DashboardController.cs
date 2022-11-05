@@ -18,16 +18,6 @@ public class DashboardController : Controller
     {
         form.WidgetId = widgetId;
         var viewModel = await dashboardViewModelBuilder.BuildAsync(form);
-        // var viewModel = new DashboardIndexViewModel(
-        //     new DashboardAppModel(Guid.NewGuid().ToString(), form.Page),
-        //     new[]
-        //     {
-        //         new DashboardRowModel(Guid.NewGuid(), DateTime.Now),
-        //         new DashboardRowModel(Guid.NewGuid(), DateTime.Now),
-        //         new DashboardRowModel(Guid.NewGuid(), DateTime.Now),
-        //     },
-        //     form
-        // );
         return View(viewModel);
     }
 }

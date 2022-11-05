@@ -1,5 +1,5 @@
 @import "../../src/common/common.scss";
-@import '../../src/dashboard/table.css';
+@import '../../src/dashboard/table.scss';
 @import '../../src/dashboard/inputs.css';
 @import '../../src/dashboard/form.css';
 

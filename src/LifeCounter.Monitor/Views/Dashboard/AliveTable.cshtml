@@ -1,34 +1,39 @@
-@model IReadOnlyList<DashboardRowViewModel>
+@model AliveTableViewModel
+
 
 <section class="alive-table" id="lives-table">
-    @{ Head(); }
-    @foreach (var row in Model)
-    {
-        <div class="row">
-            <div class="live-id">@row.LifeId.ToString("N")</div>
-            <div class="properties" data-properties>
-                @foreach (var (key, value) in row.Properties)
+    @{
+        Column("Life ID", Model.LifeIds, @<div class="row">@item.ToString("N")</div>);
+    }
+    @{
+        Column("End of life", Model.LifeEnds, @<div class="row">@item</div>);
+    }
+    @{
+        Column("Properties", Model.Properties,
+            @<div class="row properties">
+                @foreach (var (key, value) in item)
                 {
                     <div class="property">
                         <span class="key">@key</span>: <span class="value">@value</span>
                     </div>
                 }
-            </div>
-            <div class="end-of-life">@row.EndOfLife</div>
-        </div>
+             </div>);
     }
-    @{ Head(); }
 </section>
 
-@functions{
-
-    void Head()
+@functions
+{
+    void Column<T>(string title, AliveTableColumn<T> column, Func<T, object> renderValue)
     {
-        <div class="row head">
-            <div>Life ID</div>
-            <div>Properties</div>
-            <div>End of life</div>
+        <div class="column">
+            <div class="head">@title</div>
+
+            @foreach (var item in column)
+            {
+                @renderValue(item);
+            }
+
+            <div class="head">@title</div>
         </div>
     }
-
 }

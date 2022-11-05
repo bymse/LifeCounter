@@ -1,18 +1,19 @@
 namespace LifeCounter.Monitor.Models.Dashboard;
 
-public class DashboardIndexViewModel : DashboardViewModel
+public class DashboardIndexViewModel
 {
     public DashboardIndexViewModel(
         DashboardAppModel appModel,
-        IReadOnlyList<DashboardRowViewModel> rows,
-        DashboardForm form
-    ) : base(rows)
+        DashboardForm form,
+        AliveTableViewModel aliveTableViewModel
+    ) 
     {
         AppModel = appModel;
         Form = form;
+        AliveTableViewModel = aliveTableViewModel;
     }
 
-    public DashboardForm Form { get; }
-
     public DashboardAppModel AppModel { get; }
+    public DashboardForm Form { get; }
+    public AliveTableViewModel AliveTableViewModel { get; }
 }

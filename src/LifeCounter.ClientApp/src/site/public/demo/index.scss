@@ -3,6 +3,7 @@
     display: flex;
     justify-content: center;
     padding-top: 1em;
+    height: 100%;
 }
 
 .demo {
@@ -11,6 +12,7 @@
     align-items: center;
     width: 80%;
     gap: 2em;
+    height: 100%;
 }
 
 .demo .demo__number-container {
@@ -40,9 +42,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100%;
     
     & iframe {
         width: 100%;
         border: none;
+        height: 100%;
     }
 }
