@@ -5,6 +5,7 @@ using LifeCounter.DataLayer.Container;
 using LifeCounter.DataLayer.Db;
 using LifeCounter.Site.Extensions;
 using LifeCounter.Site.Models;
+using LifeCounter.Site.Models.Email;
 using LifeCounter.Site.Models.TokenProvider;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -26,12 +27,14 @@ builder.Services
     .Configure<DataProtectionTokenProviderOptions>(e => e.TokenLifespan = builder.Configuration.GetTokenTtl());
 
 builder.Services
+    .AddHttpClient()
     .UseAutoDependencies(typeof(Program).Assembly)
     .UseUtilities("site")
     .UseDb()
     .UseTempStorage()
     .AddSingleton<IActionContextAccessor, ActionContextAccessor>()
     .AddTransient<IViewRenderService, ViewRenderService>()
+    .AddTransient<IEmailSender, MailgunEmailSender>()
     ;
 
 builder.Services.AddMvc();
